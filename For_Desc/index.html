@@ -1,0 +1,4383 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Zillion Threads IDC</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob: data:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https: http:; connect-src 'self' https: blob: data: http://localhost:8000 http://127.0.0.1:8000; worker-src 'self' blob:; frame-src 'self' https:; media-src 'self' blob: data:;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind Css  -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- External JS dependencies -->
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+    <script type="text/javascript" src="assets/js/backbone-min.js"></script>
+
+
+    <!-- papa parse for data fetch from excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+    <!-- Turn.js UI Kit -->
+    <script type="text/javascript" src="assets/js/turn.min.js"></script>
+
+    <!-- App dependencies -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+
+
+    <!-- External CSS dependencies -->
+    <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css">
+    </link>
+
+
+    <!-- App CSS dependencies -->
+    <link type="text/css" rel="stylesheet" href="./assets/css/main.css">
+    </link>
+
+    <!--  CSS dependencies -->
+    <link type="text/css" rel="stylesheet" href="./assets/css/lightbox.css">
+    </link>
+
+
+    <!------ Fontawesome link  ------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/cataloguemain.css">
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="../global%20assets/Images/logo.svg" type="image/x-icon">
+
+    <!-- Fontawesome icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script-idc.css">
+    <script src="script-idc.js" defer></script>
+    <link rel="stylesheet" href="main.css">
+
+    <style type="text/css">
+        .page-1 .s1 {
+            -webkit-transform: translateY(100px);
+            -webkit-transition: all 1.5s;
+            opacity: 0;
+        }
+
+        .page-1 .s2 {
+            -webkit-transform: translateY(100px);
+            -webkit-transition: all 1s;
+            -webkit-transition-delay: 0.5s;
+            opacity: 0;
+            font-family: 'Carrois Gothic SC', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-1.animation-on .s1 {
+            -webkit-transform: translateY(0px);
+            opacity: 1;
+        }
+
+        .page-1.animation-on .s2 {
+            -webkit-transform: translateY(0px);
+            opacity: 1;
+        }
+    </style>
+
+
+    <style>
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 8px 8px 32px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+
+        .midsec img {
+            width: 77%;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            /* background: white; */
+            border-top: 2px solid #e0e0e0;
+        }
+
+
+        .image-counter {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1275px) and (max-height: 600px) {
+            .catalog-app {
+                height: 97% !important;
+            }
+        }
+
+        /* Alternative: Hide only on mobile screens */
+        @media screen and (max-width: 768px) {
+            .hide-mobile {
+                display: none !important;
+            }
+
+            .hide-mobile {
+                background: red !important;
+            }
+
+            .hide-mobile {
+                border: 5px solid red;
+            }
+        }
+
+        /* Autoplay Progress Bar */
+        .autoplay-progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 0.4vw;
+            background: linear-gradient(90deg, #E7BF3F, #196F92);
+            z-index: 999998;
+            transition: width 0.1s linear;
+            opacity: 0;
+            box-shadow: 0 -2px 10px rgba(25, 111, 146, 0.5);
+        }
+
+        .autoplay-progress-bar.active {
+            opacity: 1;
+        }
+
+        /* Autoplay Icon Active State */
+        .icon-btn.active {
+            background: #196F92 !important;
+            box-shadow: 0 0 0 2px rgba(231, 191, 63, 0.5) !important;
+            border-color: #E7BF3F !important;
+        }
+
+        .icon-btn.active svg,
+        .icon-btn.active img {
+            stroke: #ffffff !important;
+            fill: #ffffff !important;
+            filter: none !important;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .autoplay-progress-bar {
+                height: 0.6vw;
+            }
+
+            #autoScrollBtn {
+                width: 11%;
+            }
+
+            #toggleCircle {
+                width: 45%;
+            }
+        }
+
+        /* ===== MOBILE TOUCH FIX FOR TABLE OF CONTENTS PAGE ===== */
+        /* Prevent page flip on interactive elements */
+        .no-flip-zone {
+            pointer-events: auto !important;
+            touch-action: pan-y !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+
+        #toggleCircle,
+        #scrollContainer {
+            pointer-events: auto !important;
+            touch-action: pan-y !important;
+            z-index: 9999 !important;
+            position: relative !important;
+        }
+
+        #toggleCircle {
+            z-index: 99999 !important;
+        }
+
+        #autoScrollBtn {
+            pointer-events: auto !important;
+            touch-action: pan-y !important;
+            z-index: 9999 !important;
+        }
+
+
+        /* Make scroll container more touch-friendly */
+        #scrollContainer {
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll !important;
+            touch-action: pan-y !important;
+        }
+
+        /* ===== NEW: Image click area restriction ===== */
+        /* Only left 50% of images are clickable for navigation */
+        #scrollContainer img {
+            cursor: pointer;
+            touch-action: pan-y !important;
+            position: relative;
+            pointer-events: none;
+            /* Disable by default */
+        }
+
+        /* Create a clickable zone on left 50% of images */
+        #scrollContainer img::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            /* Only left half is clickable */
+            height: 100%;
+            cursor: pointer;
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        /* Alternative approach using wrapper */
+        .image-click-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .image-click-zone {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            /* Left 50% clickable */
+            height: 100%;
+            cursor: pointer;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        /* Visual feedback for clickable area (optional - for testing) */
+        .image-click-zone:active {
+            background: rgba(20, 184, 166, 0.1);
+        }
+
+        /* Visual indicator for clickable zones - TESTING ONLY */
+        /* .image-click-zone {
+    background: rgba(20, 184, 166, 0.15); 
+    border-right: 2px dashed rgba(20, 184, 166, 0.5);
+} */
+
+
+        @media screen and (min-width: 1900px) and (max-width: 1920px) and (max-height: 920px) {
+            #viewer {
+                margin-top: 3vw !important;
+                height: calc(100% + 2vw) !important;
+            }
+
+            .flipbook-scroll-wrapper {
+                height: 100% !important;
+            }
+        }
+
+        /* Mobile Phones */
+        @media screen and (max-width: 480px) {
+            #flipbook {
+                position: relative;
+                width: 354px;
+                height: 504px;
+                margin-left: 0px;
+                top: 45px !important;
+                left: 0px;
+                transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                transform: scale(1);
+                transform-origin: center top;
+            }
+        }
+
+        /* Large-Height Mobile Phones */
+        @media screen and (max-width: 480px) and (min-height: 800px) {
+            #flipbook {
+                top: 60px !important;
+                /* Add large-height mobile adjustments here */
+            }
+        }
+
+        /* ==================== THEME COLOR OVERRIDES (#196F92 & #E7BF3F) ==================== */
+        :root {
+            --zt-theme-primary: #196F92;
+            --zt-theme-gold: #E7BF3F;
+        }
+
+        /* Desktop & Mobile Icon Active / Focus / Hover States (Except Top Icon Nav) */
+        :not(.top-icon-navigation)>.icon-btn:hover,
+        :not(.top-icon-navigation)>.icon-btn.active,
+        :not(.top-icon-navigation)>.icon-btn:focus-visible {
+            border-color: #E7BF3F !important;
+            background: rgba(25, 111, 146, 0.25) !important;
+            box-shadow: 0 4px 14px rgba(25, 111, 146, 0.4) !important;
+        }
+
+        :not(.top-icon-navigation)>.icon-btn:hover img,
+        :not(.top-icon-navigation)>.icon-btn.active img,
+        :not(.top-icon-navigation)>.icon-btn:hover svg,
+        :not(.top-icon-navigation)>.icon-btn.active svg {
+            filter: invert(41%) sepia(37%) saturate(1476%) hue-rotate(156deg) brightness(93%) contrast(92%) !important;
+        }
+
+        /* Audio / Music Button Toggle Active */
+        .icon-btn.bgm-toggle.music-active,
+        .icon-btn.bgm-toggle.active {
+            border-color: #E7BF3F !important;
+            background: rgba(25, 111, 146, 0.35) !important;
+        }
+
+        /* Top Icon Navigation - Warm Cream Circular Floating Row */
+        .top-icon-navigation {
+            position: fixed !important;
+            top: 8px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            right: auto !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-radius: 9999px !important;
+            border: none !important;
+            outline: none !important;
+            padding: 0 !important;
+            gap: 12px !important;
+            box-shadow: none !important;
+            z-index: 999999 !important;
+        }
+
+        .top-icon-navigation .nav-btn-group {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .top-icon-navigation .toolbar-divider {
+            display: none !important;
+        }
+
+        .top-icon-navigation .icon-btn {
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            max-width: 40px !important;
+            min-height: 40px !important;
+            max-height: 40px !important;
+            flex: 0 0 40px !important;
+            box-sizing: border-box !important;
+            border-radius: 50% !important;
+            background: #F4EFE6 !important;
+            border: none !important;
+            outline: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14) !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            color: #2D2722 !important;
+            position: relative !important;
+        }
+
+        .top-icon-navigation .icon-btn img:not(.hidden),
+        .top-icon-navigation .icon-btn svg:not(.hidden) {
+            width: 17px !important;
+            height: 17px !important;
+            max-width: 17px !important;
+            max-height: 17px !important;
+            flex-shrink: 0 !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: auto !important;
+            /* Dark rich charcoal/black icon color (#1A1A1A) */
+            filter: brightness(0) saturate(100%) !important;
+            transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease !important;
+            opacity: 0.88 !important;
+        }
+
+        .top-icon-navigation .icon-btn img.hidden,
+        .top-icon-navigation .icon-btn svg.hidden,
+        .top-icon-navigation .icon-btn .hidden {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .top-icon-navigation .icon-btn svg path,
+        .top-icon-navigation .icon-btn svg circle,
+        .top-icon-navigation .icon-btn svg line,
+        .top-icon-navigation .icon-btn svg polyline,
+        .top-icon-navigation .icon-btn svg rect {
+            stroke: #1A1A1A !important;
+        }
+
+        /* Hover: subtle lift and pure white background */
+        .top-icon-navigation .icon-btn:hover,
+        .top-icon-navigation .nav-btn-group .icon-btn:hover {
+            background: #FFFFFF !important;
+            border: none !important;
+            outline: none !important;
+            transform: translateY(-2px) scale(1.08) !important;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .top-icon-navigation .icon-btn:hover img,
+        .top-icon-navigation .icon-btn:hover svg,
+        .top-icon-navigation .nav-btn-group .icon-btn:hover img,
+        .top-icon-navigation .nav-btn-group .icon-btn:hover svg {
+            filter: brightness(0) saturate(100%) !important;
+            opacity: 1 !important;
+        }
+
+        .top-icon-navigation .icon-btn:hover svg path,
+        .top-icon-navigation .icon-btn:hover svg circle,
+        .top-icon-navigation .icon-btn:hover svg line,
+        .top-icon-navigation .icon-btn:hover svg polyline,
+        .top-icon-navigation .icon-btn:hover svg rect {
+            stroke: #000000 !important;
+        }
+
+        /* Active Highlight Button */
+        .top-icon-navigation .icon-btn.active,
+        .top-icon-navigation .icon-btn:not(:disabled):focus-visible {
+            background: #ECE3D4 !important;
+            outline: 2px solid #C9972E !important;
+            outline-offset: -2px !important;
+            box-shadow: 0 4px 14px rgba(201, 151, 46, 0.35) !important;
+            transform: scale(1.04) !important;
+        }
+
+        .top-icon-navigation .icon-btn:disabled {
+            opacity: 0.38 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        /* Page Controller (Bottom Left - Matching Warm Cream/Beige Theme) */
+        .page-controller {
+            position: fixed !important;
+            bottom: 22px !important;
+            left: 24px !important;
+            top: auto !important;
+            right: auto !important;
+            background: #F4EFE6 !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-radius: 9999px !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            outline: none !important;
+            padding: 5px 14px 5px 6px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            z-index: 999999 !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14) !important;
+        }
+
+        #pageInput {
+            width: 38px !important;
+            height: 28px !important;
+            background: #FFFFFF !important;
+            border: 1.5px solid #D5C9B8 !important;
+            outline: none !important;
+            border-radius: 6px !important;
+            color: #1A1A1A !important;
+            text-align: center !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            padding: 0 !important;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+            transition: all 0.2s ease !important;
+        }
+
+        #pageInput:focus {
+            border-color: #A38250 !important;
+            box-shadow: 0 0 0 2px rgba(163, 130, 80, 0.25) !important;
+        }
+
+        .page-controller .ctrl-sep {
+            color: #B5A896 !important;
+            font-size: 14px !important;
+            line-height: 1 !important;
+            user-select: none !important;
+        }
+
+        #totalPages {
+            color: #2D2722 !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            min-width: 14px !important;
+            text-align: center !important;
+        }
+
+        .go-btn {
+            background: transparent !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 3px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #1A1A1A !important;
+            transition: transform 0.2s ease, color 0.2s ease !important;
+        }
+
+        .go-btn svg {
+            width: 15px !important;
+            height: 15px !important;
+            fill: #1A1A1A !important;
+            transform: rotate(-10deg) !important;
+        }
+
+        .go-btn:hover {
+            transform: scale(1.18) !important;
+        }
+
+        .go-btn:hover svg {
+            fill: #8B672B !important;
+        }
+
+        /* Zoom Control Capsule (Bottom Right - Matching Warm Cream/Beige Theme) */
+        .zoom-control-container {
+            position: fixed !important;
+            bottom: 22px !important;
+            right: 24px !important;
+            top: auto !important;
+            left: auto !important;
+            background: #F4EFE6 !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-radius: 9999px !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            outline: none !important;
+            padding: 5px 14px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            z-index: 999999 !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14) !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        }
+
+        .zoom-label {
+            color: #1A1A1A !important;
+            font-size: 13.5px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.2px !important;
+            user-select: none !important;
+        }
+
+        .zoom-reset-btn {
+            background: transparent !important;
+            border: none !important;
+            color: #1A1A1A !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            opacity: 0.85 !important;
+            transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease !important;
+        }
+
+        .zoom-reset-btn svg {
+            width: 17px !important;
+            height: 17px !important;
+            stroke: #1A1A1A !important;
+        }
+
+        .zoom-reset-btn:hover {
+            opacity: 1 !important;
+            transform: scale(1.15) !important;
+        }
+
+        .zoom-reset-btn:hover svg {
+            stroke: #8B672B !important;
+        }
+
+        .zoom-control-container .zoom-btn {
+            background: #FFFFFF !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            color: #1A1A1A !important;
+            font-size: 21px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            width: 32px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 50% !important;
+            transition: all 0.2s ease !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .zoom-control-container .zoom-btn:hover {
+            color: #000000 !important;
+            background: #FFFFFF !important;
+            border-color: #8B672B !important;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18) !important;
+            transform: scale(1.1) !important;
+        }
+
+        /* Screen Edges Large Next / Previous Page Arrows */
+        .ui-arrow-next-page,
+        .ui-arrow-previous-page {
+            background: #F4EFE6 !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            outline: none !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16) !important;
+        }
+
+        .ui-arrow-next-page svg path,
+        .ui-arrow-previous-page svg path {
+            stroke: #1A1A1A !important;
+        }
+
+        .ui-arrow-next-page:hover,
+        .ui-arrow-previous-page:hover {
+            background: #FFFFFF !important;
+            border-color: rgba(0, 0, 0, 0.12) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22) !important;
+        }
+
+        .ui-arrow-next-page:hover svg path,
+        .ui-arrow-previous-page:hover svg path {
+            stroke: #000000 !important;
+        }
+
+        /* ==================== TABLE OF CONTENTS (TOC) THEME OVERRIDES ==================== */
+        .toc-floating,
+        .toc-floating1,
+        .mobile-toc-panel {
+            background: #FDFBF7 !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16) !important;
+            border-radius: 16px !important;
+        }
+
+        .toc-title {
+            color: #2D2722 !important;
+            font-weight: 700 !important;
+        }
+
+        .toc-header-underline {
+            background-color: #C9972E !important;
+        }
+
+        .toc-list::before,
+        .mobile-toc-list::before {
+            display: none !important;
+        }
+
+        /* REMOVE CIRCLED NUMBERS FROM TABLE OF CONTENTS */
+        .mobile-toc-number {
+            display: none !important;
+        }
+
+        .toc-list li,
+        .mobile-toc-list li {
+            margin: 6px 0 !important;
+        }
+
+        .toc-list a,
+        .mobile-toc-list .mobile-toc-item {
+            color: #332B25 !important;
+            font-weight: 500 !important;
+            padding: 8px 14px !important;
+            border-radius: 8px !important;
+            transition: all 0.2s ease !important;
+            background: transparent !important;
+        }
+
+        .toc-list li.active a,
+        .toc-list a:hover,
+        .mobile-toc-list .mobile-toc-item:hover,
+        .mobile-toc-list .mobile-toc-item.active {
+            background: #F2E9DC !important;
+            color: #1A1A1A !important;
+            font-weight: 600 !important;
+        }
+
+        /* ==================== THUMBNAIL DRAWER THEME OVERRIDES ==================== */
+        .thumbnail-drawer {
+            background: #FDFBF7 !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16) !important;
+            border-radius: 16px !important;
+        }
+
+        .thumbnail-drawer .toc-title {
+            color: #2D2722 !important;
+        }
+
+        .thumb-grid-item {
+            border: 2px solid transparent !important;
+            border-radius: 8px !important;
+            padding: 4px !important;
+            background: #F4EFE6 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+            transition: all 0.22s ease !important;
+        }
+
+        .thumb-grid-item:hover,
+        .thumb-grid-item.active {
+            border-color: #C9972E !important;
+            background: #FFFFFF !important;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+        }
+
+        .thumb-grid-label {
+            color: #4A3E36 !important;
+            font-weight: 600 !important;
+        }
+
+        /* Share Popup Theme Overrides */
+        #shareModal .bg-gradient-to-r {
+            background: linear-gradient(135deg, #196F92 0%, #2282aa 100%) !important;
+        }
+
+        #copyBtn,
+        #copyBtnMobile {
+            background: #196F92 !important;
+        }
+
+        #copyBtn:hover,
+        #copyBtnMobile:hover {
+            background: #145a77 !important;
+        }
+
+        #shareModal button[id$="Btn"]:not(#copyBtn):not(#closeBtn):hover {
+            border-color: #196F92 !important;
+            background: #f0f9ff !important;
+        }
+
+        /* Search Popup Theme Overrides */
+        #SearchModal,
+        button#SearchModal {
+            background: #196F92 !important;
+            color: #ffffff !important;
+        }
+
+        #SearchModal:hover,
+        button#SearchModal:hover {
+            background: #145a77 !important;
+        }
+
+        #searchModal .search-result-item:hover {
+            background: rgba(25, 111, 146, 0.08) !important;
+            border-left: 3px solid #196F92 !important;
+            color: #196F92 !important;
+        }
+
+        /* Mobile Nav Bar & Dropdown */
+        .mobile-top-nav {
+            border-bottom: 1.5px solid rgba(25, 111, 146, 0.4) !important;
+        }
+
+        .mobile-nav-btn:hover,
+        .mobile-nav-btn:active {
+            color: #E7BF3F !important;
+        }
+
+        .mobile-dropdown-icon {
+            background: #196F92 !important;
+        }
+
+        .mobile-dropdown-item:hover,
+        .mobile-dropdown-item:active {
+            color: #E7BF3F !important;
+        }
+
+        .mobile-dropdown-item:hover .mobile-dropdown-label {
+            color: #E7BF3F !important;
+        }
+
+        .mobile-dropdown-item:hover svg {
+            stroke: #E7BF3F !important;
+        }
+
+        .mobile-dropdown-item {
+            cursor: pointer !important;
+            user-select: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        #mobileAudioBtn * {
+            pointer-events: none !important;
+        }
+
+        .mobile-toggle-indicator.on {
+            background: #196F92 !important;
+            color: #E7BF3F !important;
+        }
+
+        /* Gutter shadows should not intercept clicks or block interactive SVG elements */
+        .gutter-shadow {
+            pointer-events: none !important;
+        }
+
+        /* ==========================================================================
+           Page 1, 2, 3, 6 Mouse Cursor Restrictions:
+           Ensure entire page has default cursor. Only interactive links (websites,
+           mobile/phone, emails, locations, brand logos) display cursor: pointer.
+           ========================================================================== */
+        .page-1,
+        .page-2,
+        .page-3,
+        .page-6,
+        .page-1 *,
+        .page-2 *,
+        .page-3 *,
+        .page-6 * {
+            cursor: default !important;
+        }
+
+        /* Specific interactive items on Page 6 (and other SVG pages) */
+        .page-6 .interactive-link,
+        .page-6 .interactive-link *,
+        .page-6 a,
+        .page-6 a *,
+        .page-6 [id*="www."],
+        .page-6 [id*="www."] *,
+        .page-6 [id*="@"],
+        .page-6 [id*="@"] *,
+        .page-6 #location,
+        .page-6 #location *,
+        .page-6 [id="9489042220"],
+        .page-6 [id="9489042220"] *,
+        .page-6 [id="9489042224"],
+        .page-6 [id="9489042224"] *,
+        .page-6 [id="9489042226"],
+        .page-6 [id="9489042226"] *,
+        .page-6 [id="9489042227"],
+        .page-6 [id="9489042227"] *,
+        .page-6 [id="9489042228"],
+        .page-6 [id="9489042228"] *,
+        .page-6 [id="9489042229"],
+        .page-6 [id="9489042229"] *,
+        .page-6 #brand-1,
+        .page-6 #brand-1 *,
+        .page-6 #brand-2,
+        .page-6 #brand-2 *,
+        .page-6 #brand-3,
+        .page-6 #brand-3 *,
+        .page-6 #logo,
+        .page-6 .interactive-hitbox,
+        .page-6 #logo * {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+
+        /* Hide Table of Contents and Search icons */
+        #iconTOC,
+        #navToggle,
+        #iconText,
+        #searchIconDesktop {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* Hide zoom option and numbers on mobile & tablet screens */
+        @media (max-width: 1024px) {
+            .mobile-top-nav .mobile-nav-left {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+            }
+
+            .mobile-top-nav .mobile-logo {
+                height: 36px !important;
+                width: auto !important;
+                object-fit: contain !important;
+                display: block !important;
+            }
+
+            .mobile-top-nav .mobile-nav-center {
+                display: none !important;
+            }
+
+            .mobile-page-display {
+                display: none !important;
+                visibility: hidden !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .zoom-control-container,
+            #zoomInBtn,
+            #zoomOutBtn,
+            #zoomResetBtn,
+            #zoomSlider,
+            #zoomPercentage,
+            .zoom-label,
+            .mobile-page-display,
+            .thumbnail-preview-container,
+            .page-controller,
+            .thumb-preview-label,
+            .thumb-grid-label {
+                display: none !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+        }
+
+        /* ==================== ZOOM ALERT POPUP THEME OVERRIDE ==================== */
+        #zoom-alert-box {
+            background: #196F92 !important;
+            border: 1.5px solid #E7BF3F !important;
+            box-shadow: 0 12px 35px rgba(25, 111, 146, 0.45), 0 0 0 1px rgba(231, 191, 63, 0.2) !important;
+            color: #ffffff !important;
+        }
+
+        .zoom-alert-icon {
+            background: rgba(231, 191, 63, 0.18) !important;
+            border: 1.5px solid rgba(231, 191, 63, 0.5) !important;
+        }
+
+        .zoom-alert-icon svg {
+            stroke: #E7BF3F !important;
+        }
+
+        .zoom-alert-title {
+            color: #ffffff !important;
+        }
+
+        .zoom-alert-message {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .zoom-alert-hint {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+
+        .zoom-alert-hint kbd {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(231, 191, 63, 0.4) !important;
+        }
+
+        .zoom-alert-progress {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .zoom-alert-progress-bar {
+            background: linear-gradient(90deg, #E7BF3F, #ffffff) !important;
+        }
+
+        /* Zoom Tooltip & Indicator */
+        .zoom-blocked-tooltip,
+        .zoom-indicator {
+            background: #196F92 !important;
+            border: 1px solid #E7BF3F !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(25, 111, 146, 0.4) !important;
+        }
+
+        /* ==================== ZOOMED FLIPBOOK SCROLLBAR THEME ==================== */
+        .flipbook-scroll-wrapper.zoomed {
+            scrollbar-color: #196F92 rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .flipbook-scroll-wrapper.zoomed::-webkit-scrollbar {
+            width: 10px !important;
+            height: 10px !important;
+        }
+
+        .flipbook-scroll-wrapper.zoomed::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.06) !important;
+            border-radius: 10px !important;
+        }
+
+        .flipbook-scroll-wrapper.zoomed::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #196F92, #145a77) !important;
+            border: 2px solid transparent !important;
+            border-radius: 10px !important;
+            background-clip: padding-box !important;
+        }
+
+        .flipbook-scroll-wrapper.zoomed::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2282aa, #196F92) !important;
+            background-clip: padding-box !important;
+        }
+
+        /* Zoom Blocked Elements Visual Cue */
+        .zoom-blocked,
+        .icon-btn.zoom-blocked,
+        .ui-arrow-control.zoom-blocked,
+        .ui-arrow-next-page.zoom-blocked,
+        .ui-arrow-previous-page.zoom-blocked {
+            opacity: 0.35 !important;
+            cursor: not-allowed !important;
+            pointer-events: auto !important;
+        }
+
+        .top-icon-navigation .icon-btn.zoom-blocked:hover,
+        .ui-arrow-control.zoom-blocked:hover,
+        .ui-arrow-next-page.zoom-blocked:hover,
+        .ui-arrow-previous-page.zoom-blocked:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            background: #F4EFE6 !important;
+            opacity: 0.35 !important;
+        }
+
+        .zoom-blocked::after {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- ***************************************************** DC started *************************************************-->
+
+    <div class="catalog-app ">
+        <div id="bgLayerContainer">
+            <div id="bgLayer1" class="bg-layer active"></div>
+            <div id="bgLayer2" class="bg-layer"></div>
+        </div>
+        <canvas id="rippleCanvas" style="display:none;"></canvas>
+
+
+
+        <style>
+            #rippleCanvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                /* object-fit: fill;
+                background-repeat: no-repeat;
+                
+                background-image: url('../global\ assets/Images/commonThings/background-image-2.webp');
+                background-size: cover; */
+                background: radial-gradient(circle at center, #053664 0%, #03294D 70%, #011325 100%);
+            }
+        </style>
+
+
+        <!-- *****************************mobile nav start*********************************************  -->
+
+        <!-- ==================== MOBILE TOP NAVIGATION ==================== -->
+        <div id="mobileTopNav" class="mobile-top-nav">
+            <!-- Left Section: Logo on Left for Mobile & Tablet -->
+            <div class="mobile-nav-left">
+                <img src="../global%20assets/Images/logo.svg" alt="Sri Mathurams Medical Engineering Logo"
+                    class="mobile-logo" id="mobileHomeBtn" />
+            </div>
+
+            <!-- Center Section -->
+            <div class="mobile-nav-center"></div>
+
+            <!-- Right Section: 3-dot menu -->
+            <div class="mobile-nav-right">
+                <!-- Page Number Display -->
+                <div class="mobile-page-display">
+                    <span class="mobile-page-current" id="mobilePageCurrent">1</span>
+                    <span class="mobile-page-divider">/</span>
+                    <span class="mobile-page-total" id="mobilePageTotal">18</span>
+                </div>
+
+
+                <!-- 3-Dot Menu Button -->
+                <button class="mobile-nav-btn mobile-menu-btn" id="mobileMenuBtn" title="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="5" r="2" />
+                        <circle cx="12" cy="12" r="2" />
+                        <circle cx="12" cy="19" r="2" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== MOBILE DROPDOWN MENU ==================== -->
+        <div id="mobileDropdownMenu" class="mobile-dropdown-menu">
+            <!-- Music Toggle -->
+            <button class="mobile-dropdown-item" id="mobileAudioBtn" type="button" aria-label="Toggle Background Music">
+                <div class="mobile-dropdown-icon">
+                    <img src="../global%20assets/icons/music-on-icon.svg" alt="Music" id="mobileAudioIcon"
+                        class="mobile-audio-icon" />
+                </div>
+                <span class="mobile-dropdown-label">Music</span>
+                <span class="mobile-toggle-indicator" id="mobileAudioStatus">OFF</span>
+            </button>
+
+            <!-- Share -->
+            <button class="mobile-dropdown-item" id="mobileShareBtn">
+                <div class="mobile-dropdown-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" />
+                        <line x1="15.4" y1="6.5" x2="8.6" y2="10.5" />
+                    </svg>
+                </div>
+                <span class="mobile-dropdown-label">Share</span>
+                <svg class="mobile-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </button>
+
+            <!-- Download -->
+            <button class="mobile-dropdown-item" id="mobileDownloadBtn">
+                <div class="mobile-dropdown-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3v12" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <rect x="4" y="19" width="16" height="2" />
+                    </svg>
+                </div>
+                <span class="mobile-dropdown-label">Download</span>
+                <svg class="mobile-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </button>
+
+            <!-- Fullscreen -->
+            <!-- <button class="mobile-dropdown-item" id="mobileFullscreenBtn">
+        <div class="mobile-dropdown-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </div>
+        <span class="mobile-dropdown-label">Fullscreen</span>
+    </button> -->
+        </div>
+
+        <!-- Mobile Menu Overlay (closes menu when clicked) -->
+        <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+
+        <!-- ==================== MOBILE TABLE OF CONTENTS ==================== -->
+        <div id="mobileTocPanel" class="mobile-toc-panel">
+            <div class="mobile-toc-header">
+                <h3>Table of Contents</h3>
+                <button class="mobile-toc-close" id="mobileTocClose">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="mobile-toc-list">
+                <li class=" tb-link mobile-toc-item" data-page="1" data-audio-path="../audios/home.mp3">
+                    <span class="mobile-toc-number">01</span>
+                    <span class="mobile-toc-title">Home</span>
+                </li>
+                <li class=" tb-link mobile-toc-item" data-page="2" data-audio-path="../audios/about-us.mp3">
+                    <span class="mobile-toc-number">02</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="4" data-audio-path="../audios/products.mp3">
+                    <span class="mobile-toc-number">03</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="5" data-audio-path="../audios/3D-experience.mp3">
+                    <span class="mobile-toc-number">04</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="6" data-audio-path="">
+                    <span class="mobile-toc-number">05</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="12" data-audio-path="">
+                    <span class="mobile-toc-number">06</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="14" data-audio-path="">
+                    <span class="mobile-toc-number">07</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="17"
+                    data-audio-path="">
+                    <span class="mobile-toc-number">08</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="22" data-audio-path="">
+                    <span class="mobile-toc-number">09</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="30"
+                    data-audio-path="">
+                    <span class="mobile-toc-number">10</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="35"
+                    data-audio-path="">
+                    <span class="mobile-toc-number">11</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="37" data-audio-path="">
+                    <span class="mobile-toc-number">12</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="38" data-audio-path="">
+                    <span class="mobile-toc-number">13</span>
+                    <span class="mobile-toc-title"></span>
+                </li>
+                <li class="tb-link mobile-toc-item" data-page="40" data-audio-path="">
+                    <span class="mobile-toc-number">14</span>
+                    <span class="mobile-toc-title">Contact Us</span>
+                </li>
+            </ul>
+        </div>
+        <div id="mobileTocOverlay" class="mobile-toc-overlay"></div>
+
+
+
+
+        <!-- *****************************mobile nav end*********************************************  -->
+
+        <div class="absolute hidden top-0 left-0 w-[100%] h-[5%] bg-[#D9D9D9] cursor-pointer" id="navContainerMain"
+            style="z-index: 999999999999999;">
+            <div class="absolute top-[50%] left-[2%] cursor-pointer hover:bg-gray-100 z-[910] rounded-md transition-colors duration-200"
+                style="transform: translateY(-50%);">
+                <img src="../global%20assets/icons/tabel-of-content-icon.svg" alt="table-of-content-icon" id="navToggle"
+                    class="sm:w-[7vw] md:w-[5vw] lg:w-[1.5vw] cursor-pointer" />
+            </div>
+
+            <img src="../global%20assets/bottom-navbar/thumbnail-icon.svg" alt="Thumbnail View Navigation"
+                id="navToggle1"
+                class="absolute top-[50%] left-[4.5%] w-[1.5vw] cursor-pointer z-[910] hover:opacity-80 transition-opacity"
+                style="transform: translateY(-50%);" />
+
+            <img src="../global%20assets/icons/share-icon.svg" alt="share-icon" id="shareBn"
+                class="absolute top-[50%] right-[3.3%] cursor-pointer w-[1.2vw]   z-[910]"
+                style="transform: translateY(-50%);" />
+            <img src="../global%20assets/icons/download-icon.svg" alt="download-icon" id="download-tn"
+                class="absolute top-[50%] right-[1%] cursor-pointer w-[1.5vw]   z-[910]"
+                style="transform: translateY(-50%);" />
+
+            <img src="../global%20assets/icons/search-icon.svg" id="searchIconDesktop" alt="search-icon"
+                class="absolute top-[50%] left-[7%] w-[1.5vw]  z-[1000] cursor-pointer"
+                style="transform: translateY(-50%);" />
+
+            <div>
+                <p id="goToPage1" data-audio-path="../audios/home.mp3" data-page="1"
+                    class="absolute top-[50%] left-[50%] w-[3vw] font-semibold"
+                    style="transform: translate(-50%, -50%) ;"><img src="../global%20assets/Images/logo.svg" alt="" />
+                </p>
+            </div>
+
+            <img src="../global%20assets/icons/doted-icon.svg" alt="Mobile Navigation Menu Icon" id="navMenuBarMobile"
+                class="" style="transform: translateY(-50%);" />
+        </div>
+
+        <!-- Add this right after the opening <div class="catalog-app"> tag -->
+        <!-- Brand Logo Header (Top Left) -->
+        <div class="top-left-brand">
+            <img src="../global%20assets/bottom-navbar/logo.svg" alt="Sri Mathurams Medical Engineering Logo" />
+        </div>
+
+        <div id="topIconNav" class="top-icon-navigation">
+            <!-- 1. Thumbnail Grid View (First) -->
+            <button class="icon-btn" id="desktopThumbToggle" title="Thumbnails">
+                <img src="../global%20assets/bottom-navbar/thumbnail-icon.svg" alt="Thumbnails" />
+            </button>
+
+            <!-- 2. Audio Toggle -->
+            <button class="icon-btn bgm-toggle" id="bgmButton" title="Audio">
+                <audio id="bgmAudio" loop autoplay>
+                    <source src="../audios/keys-of-moon-white-petals(chosic.com).mp3" type="audio/mpeg">
+                </audio>
+                <img id="musicOnImg" src="../global%20assets/bottom-navbar/music-on-icon.svg" alt="Music On" />
+                <img id="musicOffImg" src="../global%20assets/icons/music-off-icon.svg" alt="Music Off"
+                    class="hidden" />
+            </button>
+
+            <!-- 3. Autoplay Slideshow -->
+            <button class="icon-btn" id="iconAutoplay" title="Autoplay">
+                <img src="../global%20assets/bottom-navbar/play-icon.svg" alt="Autoplay" />
+            </button>
+
+            <!-- 4. Share -->
+            <button class="icon-btn" id="shareBtn" title="Share">
+                <img src="../global%20assets/bottom-navbar/share-icon.svg" alt="Share Catalog" />
+            </button>
+
+            <!-- 5. Download -->
+            <button class="icon-btn" id="download-btn" title="Download">
+                <img src="../global%20assets/bottom-navbar/download-icon.svg" alt="Download PDF Catalog" />
+            </button>
+
+            <!-- 6. Fullscreen -->
+            <button class="icon-btn full-screen" id="full-screen-btn" title="Fullscreen">
+                <img src="../global%20assets/bottom-navbar/full-screen-icon.svg" alt="Fullscreen" />
+            </button>
+        </div>
+
+        <!-- Page Controller (Bottom Left) -->
+        <div class="page-controller">
+            <input type="number" id="pageInput" min="1" value="1" />
+            <span class="ctrl-sep">|</span>
+            <strong id="totalPages">0</strong>
+            <span class="ctrl-sep">|</span>
+            <button id="goPageBtn" class="go-btn" title="Go to Page">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Zoom Control Container (Bottom Right) -->
+        <div class="zoom-control-container">
+            <span class="zoom-label">Zoom</span>
+            <button id="zoomResetBtn" class="zoom-reset-btn" title="Zoom">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            <button id="zoomOutBtn" class="zoom-btn icon-btn" title="Zoom Out">−</button>
+            <input type="range" id="zoomSlider" min="50" max="150" value="100" step="10" class="zoom-slider hidden" />
+            <span id="zoomPercentage" class="zoom-percentage hidden">100%</span>
+            <button id="zoomInBtn" class="zoom-btn icon-btn" title="Zoom In">+</button>
+        </div>
+
+
+        <div id="viewer" class="first-page">
+
+
+
+            <audio id="navAudio"></audio>
+
+
+
+
+
+
+
+            <!-- ***********************************************Bottom Functionality code******************************************************** -->
+
+
+            <div id="navOverlay" class="nav-overlay"></div>
+
+            <nav id="tocNav" class="toc-floating " aria-label="Table of Contents">
+                <div class="toc-header-container flex justify-between items-center">
+                    <div class="toc-title">Table of Contents</div>
+                    <button id="closeTocBtn"
+                        class="w-[1.5vw] h-[1.5vw] flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="w-[1.2vw] h-[1.2vw]" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="toc-header-underline"></div>
+                <ul class="toc-list">
+                    <li class="tb-link cursor-pointer" data-page="1" data-audio-path="../audios/home.mp3"><a><span
+                                class="mobile-toc-number">01</span> </a></li>
+                    <li class="tb-link cursor-pointer" data-page="2" data-audio-path="../audios/about-us.mp3"><a><span
+                                class="mobile-toc-number">02</span>About us</a></li>
+                    <li class="tb-link cursor-pointer" data-page="4" data-audio-path=""><a> <span
+                                class="mobile-toc-number">03</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="5" data-audio-path="">
+                        <a><span class="mobile-toc-number">04</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="6" data-audio-path="">
+                        <a><span class="mobile-toc-number">05</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="12" data-audio-path="">
+                        <a><span class="mobile-toc-number">06</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="14" data-audio-path="">
+                        <a><span class="mobile-toc-number">07</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="17"
+                        data-audio-path=""><a><span
+                                class="mobile-toc-number">08</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="22" data-audio-path="">
+                        <a><span class="mobile-toc-number">09</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="30"
+                        data-audio-path=""><a><span
+                                class="mobile-toc-number">10</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="35"
+                        data-audio-path=""><a><span
+                                class="mobile-toc-number">11</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="37" data-audio-path="">
+                        <a><span class="mobile-toc-number">12</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="38" data-audio-path="">
+                        <a><span class="mobile-toc-number">13</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="40" data-audio-path="../audios/contact-us.mp3">
+                        <a><span class="mobile-toc-number">14</span>Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Thumbnail Drawer Panel (Desktop Only) -->
+            <div id="thumbnailDrawer" class="thumbnail-drawer" aria-label="Page Thumbnails">
+                <div class="toc-header-container flex justify-between items-center">
+                    <div class="toc-title">Page Thumbnails</div>
+                    <button id="closeThumbBtn"
+                        class="w-[1.5vw] h-[1.5vw] flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="w-[1.2vw] h-[1.2vw]" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="toc-header-underline"></div>
+                <div id="thumbnailGrid" class="thumb-grid-container custom-scrollbar">
+                    <!-- Grid items will be populated dynamically by JS -->
+                </div>
+            </div>
+
+            <div id="navOverlay1" class="nav-overlay1"></div>
+
+            <nav id="tocNav1" class="toc-floating1 " aria-label="Table of Contents">
+                <div class="toc-header-container flex justify-between items-center">
+                    <div class="toc-title">Table of Contents</div>
+                    <button id="closeTocBtn1"
+                        class="flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer">
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="toc-header-underline"></div>
+                <ul class="toc-list">
+                    <li class="tb-link cursor-pointer" data-page="1" data-audio-path="../audios/home.mp3"><a><span
+                                class="mobile-toc-number">01</span> Home</a></li>
+                    <li class="tb-link cursor-pointer" data-page="2" data-audio-path="../audios/about-us.mp3"><a><span
+                                class="mobile-toc-number">02</span>About us</a></li>
+                    <li class="tb-link cursor-pointer" data-page="4" data-audio-path="../audios/products.mp3"><a> <span
+                                class="mobile-toc-number">04</span>Products</a></li>
+                    <li class="tb-link cursor-pointer" data-page="5" data-audio-path="../audios/3D-experience.mp3">
+                        <a><span class="mobile-toc-number">05</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="6" data-audio-path="">
+                        <a><span class="mobile-toc-number">06</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="12" data-audio-path="">
+                        <a><span class="mobile-toc-number">12</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="14" data-audio-path="">
+                        <a><span class="mobile-toc-number">14</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="17"
+                        data-audio-path="../audios/Emergency-patient-transfer.mp3"><a><span
+                                class="mobile-toc-number">17</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="22" data-audio-path="">
+                        <a><span class="mobile-toc-number">22</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="30"
+                        data-audio-path=""><a><span
+                                class="mobile-toc-number">30</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="35"
+                        data-audio-path=""><a><span
+                                class="mobile-toc-number">35</span></a></li>
+                    <li class="tb-link cursor-pointer" data-page="37" data-audio-path="">
+                        <a><span class="mobile-toc-number">37</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="38" data-audio-path="">
+                        <a><span class="mobile-toc-number">38</span></a>
+                    </li>
+                    <li class="tb-link cursor-pointer" data-page="40" data-audio-path="../audios/contact-us.mp3">
+                        <a><span class="mobile-toc-number">40</span>Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- *************************share button navbar start**************************  -->
+
+
+
+            <!-- Overlay -->
+            <div id="shareOverlay"
+                class="hidden fixed inset-0 bg-gray-900/40 backdrop-gray-200 z-[1111111111] animate-fade-in">
+            </div>
+
+
+
+            <!-- Share Modal -->
+            <!-- Share Modal - Redesigned Premium Theme -->
+            <div id="shareModal"
+                class="hidden fixed w-[92vw] max-w-[28vw] bg-white rounded-2xl shadow-2xl z-[1111111111] overflow-hidden border border-gray-200"
+                style="top: 50%; left: 50%; transform: translate(-50%,-50%);">
+
+                <!-- Header Block with Theme Gradient Background -->
+                <div
+                    class="bg-gradient-to-r from-[#196F92] to-[#2589b2] px-[1.5vw] py-[1.2vw] flex justify-between items-center relative">
+                    <div class="flex flex-col text-white">
+                        <!-- <span class="text-[0.65vw] uppercase tracking-widest text-white! font-bold">Document Access</span> -->
+                        <h2 class="text-white font-semibold text-[1.3vw] mt-[0.1vw]">Share Catalogue</h2>
+                    </div>
+                    <button id="closeBtn"
+                        class="w-[1.8vw] h-[1.8vw] flex items-center justify-center rounded-full bg-white text-[#242424] hover:bg-white/90 transition-all duration-200 cursor-pointer shadow-sm">
+                        <svg class="w-[0.8vw] h-[0.8vw]" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-[1.5vw] space-y-[1.2vw]">
+
+
+                    <!-- Link Copy Section -->
+                    <div class="space-y-[0.4vw]">
+                        <span class="text-[0.65vw] font-bold text-gray-500 uppercase tracking-wider block">Document
+                            URL</span>
+                        <div class="flex gap-[0.6vw]">
+                            <input id="shareInput" type="text" readonly
+                                class="flex-1 h-[2.4vw] px-[0.8vw] bg-white border border-gray-200 rounded-lg text-[0.75vw] font-mono text-gray-700 focus:outline-none focus:border-[#196F92] transition-all"
+                                placeholder="Catalog link" />
+                            <div class="relative">
+                                <button id="copyBtn"
+                                    class="h-[2.4vw] px-[1vw] bg-[#196F92] hover:bg-[#145a77] text-white font-semibold text-[0.75vw] rounded-lg transition-all cursor-pointer">
+                                    Copy
+                                </button>
+                                <span id="copiedMsg"
+                                    class="hidden absolute -top-[2.5vw] left-1/2 -translate-x-1/2 bg-green-600 text-white px-[1vw] py-[0.4vw] rounded-[0.4vw] text-[0.7vw] font-semibold whitespace-nowrap shadow-lg">
+                                    Link copied!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Separator with Text -->
+                    <div class="flex items-center justify-center my-[1vw]">
+                        <div class="flex-grow border-t border-[#196F92]/30"></div>
+                        <span class="mx-[0.8vw] text-[0.65vw] font-bold text-[#196F92] uppercase tracking-wider">Send
+                            via</span>
+                        <div class="flex-grow border-t border-[#196F92]/30"></div>
+                    </div>
+
+                    <!-- Social channels -->
+                    <div class="grid grid-cols-4 gap-[0.6vw]">
+                        <button id="whatsappBtn"
+                            class="flex flex-col items-center justify-center p-[0.6vw] bg-white border border-gray-200 hover:border-green-500/50 hover:bg-green-50/20 rounded-xl transition-all cursor-pointer group shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-[1.4vw] text-green-500 mb-[0.2vw]"></i>
+                            <span class="text-[0.6vw] text-gray-500 group-hover:text-gray-800">WhatsApp</span>
+                        </button>
+                        <button id="twitterBtn"
+                            class="flex flex-col items-center justify-center p-[0.6vw] bg-white border border-gray-200 hover:border-gray-400 hover:bg-gray-50 rounded-xl transition-all cursor-pointer group shadow-sm">
+                            <i class="fa-brands fa-x-twitter text-[1.4vw] text-black mb-[0.2vw]"></i>
+                            <span class="text-[0.6vw] text-gray-500 group-hover:text-gray-800">Twitter</span>
+                        </button>
+                        <button id="facebookBtn"
+                            class="flex flex-col items-center justify-center p-[0.6vw] bg-white border border-gray-200 hover:border-blue-500/50 hover:bg-blue-50/20 rounded-xl transition-all cursor-pointer group shadow-sm">
+                            <i class="fa-brands fa-facebook text-[1.4vw] text-blue-600 mb-[0.2vw]"></i>
+                            <span class="text-[0.6vw] text-gray-500 group-hover:text-gray-800">Facebook</span>
+                        </button>
+                        <button id="linkedInBtn"
+                            class="flex flex-col items-center justify-center p-[0.6vw] bg-white border border-gray-200 hover:border-blue-400/50 hover:bg-blue-50/20 rounded-xl transition-all cursor-pointer group shadow-sm">
+                            <i class="fa-brands fa-linkedin text-[1.4vw] text-blue-500 mb-[0.2vw]"></i>
+                            <span class="text-[0.6vw] text-gray-500 group-hover:text-gray-800">LinkedIn</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backdrop (optional - add for better UX) -->
+            <div id="modalBackdrop" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[1111111110]"></div>
+
+            <style>
+                /* Custom Animations */
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translate(-50%, -45%);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+
+                @keyframes pulse-green {
+
+                    0%,
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+                    }
+
+                    50% {
+                        box-shadow: 0 0 0 0.5vw rgba(16, 185, 129, 0);
+                    }
+                }
+
+                #shareModal:not(.hidden) {
+                    animation: slideUp 0.3s ease-out forwards;
+                }
+
+                #copyBtn:hover {
+                    animation: pulse-green 1.5s infinite;
+                }
+
+
+
+
+
+                /* Bottom Thumbnail Preview System */
+                .thumbnail-preview-container {
+                    position: fixed;
+                    top: 50%;
+                    left: 2%;
+                    transform: translateY(-50%);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.8vw;
+                    z-index: 999999;
+                    padding: 1vw 1.5vw;
+                    background: rgba(255, 255, 255, 0.95);
+                    border-radius: 3vw;
+                    box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.15);
+                    backdrop-filter: blur(10px);
+                }
+
+                .thumb-dot {
+                    width: 1.2vw;
+                    height: 1.2vw;
+                    border-radius: 50%;
+                    background: #cccccc;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    position: relative;
+                }
+
+                .thumb-dot:hover {
+                    background: #196F92;
+                    transform: scale(1.3);
+                }
+
+                .thumb-dot.active {
+                    background: #E7BF3F;
+                    transform: scale(1.2);
+                }
+
+                /* Thumbnail Preview Popup */
+                .thumb-preview {
+                    position: absolute;
+                    bottom: -3vw;
+                    left: 700%;
+                    width: 10vw;
+                    height: 8vw;
+                    transform: translateX(-50%) scale(0.8);
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    z-index: 10;
+                }
+
+                .thumb-dot:hover .thumb-preview {
+                    opacity: 1;
+                    transform: translateX(-50%) scale(1);
+                }
+
+                .thumb-preview-card {
+                    background: white;
+                    width: 10vw;
+                    border-radius: 0.8vw;
+                    box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.25);
+                    overflow: hidden;
+                    border: 0.2vw solid #196F92;
+                }
+
+                .thumb-preview-image {
+                    width: 20vw;
+                    height: 8vw;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .thumb-preview-label {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(25, 111, 146, 0.95);
+                    color: white;
+                    padding: 0.5vw 1.2vw;
+                    border-radius: 2vw;
+                    font-size: 0.8vw;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    box-shadow: 0 0.3vw 1vw rgba(0, 0, 0, 0.3);
+                }
+
+                /* Mobile Responsive */
+                @media (max-width: 768px) {
+                    .thumbnail-preview-container {
+                        display: none;
+                    }
+                }
+
+                @media (min-width: 769px) and (max-width: 1024px) {
+                    .thumb-dot {
+                        width: 1.5vw;
+                        height: 1.5vw;
+                    }
+
+                    .thumb-preview-image {
+                        width: 4vw;
+                        height: 8vw;
+                    }
+
+                    .thumb-preview-label {
+                        font-size: 1.3vw;
+                        padding: 0.7vw 1.5vw;
+                    }
+                }
+            </style>
+
+            <!-- *************************share button navbar end**************************  -->
+
+
+            <!-- ***********************************download start*********************************** -->
+
+
+
+
+
+
+            <!-- ***********************************download end*********************************** -->
+
+            <div id="navMobileOverlay" class="nav-mobile-overlay">
+                <div class="nav-mobile-overlay__backdrop"></div>
+
+                <div class="nav-mobile-overlay__panel">
+
+
+                    <!-- Share -->
+                    <img src="../global%20assets/icons/share-icon.svg" alt="Share" id="navMobileShareIcon"
+                        class="nav-mobile-icon nav-mobile-icon--share" />
+
+                    <!-- Download -->
+                    <img src="../global%20assets/icons/download-icon.svg" alt="Download" id="navMobileDownloadIcon"
+                        class="nav-mobile-icon nav-mobile-icon--download" />
+
+                    <!-- Audio -->
+                    <img src="../global%20assets/icons/music-on-icon.svg" alt="Audio" id="navMobileAudioIcon"
+                        class="nav-mobile-icon nav-mobile-icon--audio" />
+                </div>
+            </div>
+
+
+            <!-- ******************************************************************************************************* -->
+
+            <!-- Overlay -->
+            <div id="shareOverlayMobile" class="hidden fixed inset-0 bg-black/40 z-[1111111100]"></div>
+
+            <!-- Share Modal -->
+            <div id="shareModalMobile" class="
+                                hidden fixed
+                                top-[10%] right-4
+                                w-[92vw] max-w-md
+                                bg-white rounded-xl shadow-2xl
+                                z-[1111111111]
+                                animate-slide-up
+
+                                md:top-[5.5%] md:right-[2%]
+                                md:w-[90vw] md:max-w-[30vw]
+                              ">
+                <!-- Header -->
+                <div class="flex justify-between items-center px-4 py-3 border-b border-gray-200">
+                    <h2 class="text-sm font-semibold text-black">Share</h2>
+                    <button id="shareCloseBtnMobile" class="text-base text-gray-600 hover:text-gray-900 cursor-pointer">
+                        âœ•
+                    </button>
+                </div>
+
+                <!-- Content -->
+                <div class="px-4 py-3">
+                    <!-- Link Section -->
+                    <div class="flex flex-col gap-3 md:flex-row md:items-center">
+                        <input id="shareInputMobile" type="text" readonly
+                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm font-mono bg-gray-50 focus:outline-none" />
+
+                        <div class="relative w-full md:w-auto">
+                            <button id="copyBtnMobile"
+                                class="w-full md:w-auto px-4 py-2 flex items-center justify-center gap-2 bg-[#196F92] hover:bg-[#145a77] text-white rounded-lg text-sm font-semibold transition active:scale-95">
+                                <img src="../global%20assets/icons/copy-link-icon.svg" class="w-4"
+                                    alt="Copy Link Icon" />
+                                Copy Link
+                            </button>
+
+                            <span id="copiedMsgMobile"
+                                class="hidden absolute -top-10 right-0 bg-gray-900 text-white px-3 py-2 rounded-md text-xs whitespace-nowrap">
+                                Copied!
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Share Through -->
+                    <div class="border-t border-gray-200 mt-4 pt-4">
+                        <span class="block text-sm font-semibold text-black mb-3">
+                            Share Through
+                        </span>
+
+                        <div class="grid grid-cols-4 gap-3 md:grid-cols-6 w-[60%]">
+                            <button id="waShareMobile" class="shareIconBtn" title="WhatsApp">
+                                <img src="../global%20assets/icons/whatsapp-icon.svg" alt="WhatsApp Icon" />
+                            </button>
+
+                            <button id="twShareMobile" class="shareIconBtn" title="Twitter">
+                                <img src="../global%20assets/icons/twitter-icon.svg" alt="Twitter Icon" />
+                            </button>
+
+                            <button id="fbShareMobile" class="shareIconBtn" title="Facebook">
+                                <img src="../global%20assets/icons/facebook-icon.svg" alt="Facebook Icon" />
+                            </button>
+
+                            <button id="lnShareMobile" class="shareIconBtn" title="LinkedIn">
+                                <img src="../global%20assets/icons/linked-in-icon.svg" alt="LinkedIn Icon" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="flipbook-scroll-wrapper">
+
+                <div id="flipbook" class="ui-flipbook">
+
+
+
+
+
+
+
+
+                    <!-- *******************************Front Page 5 Start *************************** -->
+
+                    <!-- *******************************Front Page 5 End *************************** -->
+
+
+                    <!-- ******************************* Page 1 Start *************************** -->
+                    <div class="page page-animated page-1">
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/home-page-image.svg"></div>
+                        <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow hidden shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[4]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[4]" />
+                    </div>
+                    <!-- *******************************  Page 1 end ***************************** -->
+                    <!-- *******************************  Page 2 Start *************************** -->
+                    <div class="page page-animated page-2">
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/problems-page.svg"></div>
+                        <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[8]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow hidden shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[8]" />
+                    </div>
+                    <!-- *******************************  Page 2 end ***************************** -->
+                    <!-- *******************************  Page 3 Start *************************** -->
+                    <div class="page page-animated page-3">
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/opportunities-page.svg"></div>
+                             <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow hidden shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[8]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow  shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[8]" />
+                    </div>
+                    <!-- *******************************  Page 3 end ***************************** -->
+
+                    <!-- *******************************  Page 6 Start *************************** -->
+                    <div class="page page-animated page-4 page-6">
+                        <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[4]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow hidden shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[4]" />
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/contact-page.svg"></div>
+                    </div>
+                    <!-- *******************************  Page 6 end ***************************** -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <audio id="flipaudio" src="../audios/flipsound-new.mp3"></audio>
+
+        <!-- controls -->
+        <div id="controls">
+            <div class="all">
+
+
+                <!-- zoom slider -->
+                <div id="zoom-slider-view" class="zoom-slider">
+                    <div class="bg">
+                        <div class="ui-slider" id="zoom-slider">
+                            <div class="bar">
+                                <div class="progress-width">
+                                    <div class="progress">
+                                        <div class="handler"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / zoom slider -->
+            </div>
+
+            <div id="ui-icon-expand-options">
+                <a class="ui-icon show-hint">
+                    <i class="fa fa-ellipsis-h"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- / controls -->
+
+        <!-- miniatures -->
+        <div id="miniatures" class="ui-miniatures-slider">
+        </div>
+
+        <!-- / miniatures -->
+
+
+
+
+        <!-- Search Modal Overlay -->
+        <!-- <div id="searchOverlay" class="fixed inset-0  bg-opacity-50 z-[999] hidden transition-opacity duration-300"></div> -->
+
+        <!-- Search Modal - Green/White/Teal Theme -->
+
+        <div id="searchModal"
+            class="fixed top-[2%] left-[2%] bg-white border border-gray-200 z-[100000000000] hidden w-[18vw] rounded-2xl shadow-2xl overflow-hidden p-[1vw]">
+
+            <!-- Header Section -->
+            <div class="flex items-center justify-between mb-[1vw] relative">
+                <div class="flex items-center gap-[0.6vw]">
+                    <!-- Orange circle icon -->
+                    <div class="w-[2vw] h-[2vw] bg-[#E67429] rounded-full flex items-center justify-center shadow-sm">
+                        <svg class="w-[0.9vw] h-[0.9vw] text-white" fill="none" stroke="#ffffff" stroke-width="3"
+                            viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </div>
+                    <h2 class="text-[#1a2b49] font-semibold text-[0.9vw]">Find Product</h2>
+                </div>
+                <!-- Close Button -->
+                <button id="closeSearchModal"
+                    class="absolute top-[0.3vw] right-0 w-[1.2vw] h-[1.2vw] flex items-center justify-center text-gray-400 hover:text-gray-600 transition-all duration-200 cursor-pointer">
+                    <svg class="w-[1.1vw] h-[1.1vw]" fill="none" stroke="currentColor" stroke-width="2.5"
+                        viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Search Input Container -->
+            <div
+                class="relative flex items-center bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 focus-within:border-[#E67429] shadow-sm">
+                <div class="pl-[0.6vw] text-gray-400">
+                    <svg class="w-[0.9vw] h-[0.9vw]" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search by name, code or category"
+                    class="flex-1 bg-transparent border-none outline-none text-gray-700 px-[0.6vw] py-[0.5vw] text-[0.75vw] w-full placeholder:text-gray-400 font-medium"
+                    autocomplete="off" />
+                <button id="SearchModal"
+                    class="h-[2.1vw] w-[2.5vw] bg-[#E67429] hover:bg-[#c35c1a] text-white rounded-r-xl transition-all duration-200 cursor-pointer flex items-center justify-center">
+                    <svg class="w-[0.9vw] h-[0.9vw]" fill="none" stroke="#ffffff" stroke-width="2.5"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Results Container -->
+            <div id="searchResults" class="mt-[0.6vw] max-h-[15vw] overflow-y-auto custom-scrollbar space-y-[0.4vw]">
+                <!-- Results dynamically populated here -->
+            </div>
+        </div>
+
+
+
+        <!-- Bottom Thumbnail Preview Navigation -->
+        <div class="thumbnail-preview-container">
+            <!-- Page 1 -->
+            <div class="thumb-dot active" data-page="1">
+                <div class="thumb-preview">
+                    <div class="thumb-preview-card">
+                        <img src="../global%20assets/Images/Thumbnail-Images/page-1.webp" alt="Page 1"
+                            class="thumb-preview-image">
+                        <div class="thumb-preview-label">Page 1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2-3 -->
+            <div class="thumb-dot" data-page="2">
+                <div class="thumb-preview">
+                    <div class="thumb-preview-card">
+                        <img src="../global%20assets/Images/Thumbnail-Images/page-2-3.webp" alt="Page 2-3"
+                            class="thumb-preview-image">
+                        <div class="thumb-preview-label">Page 2-3</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Page 4 -->
+            <div class="thumb-dot" data-page="4">
+                <div class="thumb-preview">
+                    <div class="thumb-preview-card">
+                        <img src="../global%20assets/Images/Thumbnail-Images/page-6.webp" alt="Page 6-7"
+                            class="thumb-preview-image">
+                        <div class="thumb-preview-label">Page 4</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <style>
+            /* Custom Scrollbar for Search Results */
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 0.3vw;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 0.5vw;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 0.5vw;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        </style>
+
+
+        <!-- Desktop Screen Fixed Outer Navigation Arrows -->
+        <a ignore="1" class="ui-arrow-control ui-arrow-next-page next-arrow">
+            <svg class="w-[18px] h-[18px] z-1111" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.75 7L29.75 21L15.75 35" stroke="#E67429" stroke-width="4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+        <a ignore="1" class="ui-arrow-control ui-arrow-previous-page prev-arrow">
+            <svg class="w-[18px] h-[18px] z-1111" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M26.25 7L12.25 21L26.25 35" stroke="#E67429" stroke-width="4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // Yarika Collections: Shared Absolute Canvas Stage Renderer for Flipbook & Admin
+        (function () {
+            window._cachedCatalogData = null;
+            const urlParams = new URLSearchParams(window.location.search);
+            const isCalibrate = urlParams.get('calibrate') === '1';
+            const isPreviewMode = urlParams.get('preview') === '1' || urlParams.get('mode') === 'draft';
+
+            function resolveApiUrl() {
+                const queryMode = isPreviewMode ? '&mode=draft' : '';
+                // When opened via file:// protocol in local browser, connect to local dev port
+                if (window.location.protocol === 'file:') {
+                    return 'http://localhost:8000/api/get_products.php?t=' + Date.now() + queryMode;
+                }
+                // On any web server (production or local), use clean relative path to the api folder
+                return '../api/get_products.php?t=' + Date.now() + queryMode;
+            }
+
+            // Universal Slot Renderer shared with Admin preview
+            window.renderSlotHtml = function (slot, calibrate, idx) {
+                const fx = typeof slot.focal_x !== 'undefined' ? slot.focal_x : 50;
+                const fy = typeof slot.focal_y !== 'undefined' ? slot.focal_y : 50;
+                const zoom = typeof slot.zoom !== 'undefined' ? slot.zoom : 1.00;
+                const radius = slot.radius || '0';
+                const zIndex = slot.z_index || 1;
+                const imgSrc = slot.image || '../global assets/Images/products/product-1.jpg';
+                const animIndex = typeof idx === 'number' ? idx : 0;
+
+                return `
+                    <div class="slot" id="slot-${slot.id}" data-slot-id="${slot.id}" style="
+                        position: absolute;
+                        left: ${slot.x}%;
+                        top: ${slot.y}%;
+                        width: ${slot.w}%;
+                        height: ${slot.h}%;
+                        border-radius: ${radius};
+                        overflow: hidden;
+                        z-index: ${zIndex};
+                        --slot-idx: ${animIndex};
+                    ">
+                        <img src="${imgSrc}" alt="${slot.id}" loading="eager" style="
+                            position: absolute;
+                            inset: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: ${fx}% ${fy}%;
+                            transform: scale(${zoom});
+                            transform-origin: ${fx}% ${fy}%;
+                        " onerror="this.onerror=null; this.src='../global assets/Images/products/product-1.jpg';">
+                        ${calibrate ? `<span class="slot-id-label">${slot.id}</span>` : ''}
+                    </div>
+                `;
+            };
+
+            // Section Heading Bar Renderer (Bilingual Tamil — English)
+            window.renderSectionHeadingHtml = function (sec) {
+                return `
+                    <div class="yarika-heading-bar" id="sec-${sec.id}" style="
+                        position: absolute;
+                        left: ${sec.x}%;
+                        top: ${sec.y}%;
+                        width: ${sec.w}%;
+                        height: ${sec.h}%;
+                    ">
+                        <div class="yarika-heading-text">
+                            <span class="yarika-heading-ta">${sec.label_ta || ''}</span>
+                            <span class="yarika-heading-sep">—</span>
+                            <span class="yarika-heading-en">${sec.label_en || ''}</span>
+                        </div>
+                    </div>
+                `;
+            };
+
+            function renderYarikaPage(pageKey, pageData) {
+                if (!pageData) return;
+
+                // Find all stage instances (Turn.js may create duplicate wrappers during turn animations)
+                const stages = document.querySelectorAll(`.yarika-page-stage[data-page="${pageKey}"], #${pageKey === 'page4' ? 'yarika-stage-page4' : 'yarika-stage-page5'}`);
+
+                stages.forEach(stage => {
+                    if (isCalibrate) {
+                        stage.classList.add('calibrate-mode');
+                        if (!stage.querySelector('.calibrate-overlay-img')) {
+                            const overlay = document.createElement('img');
+                            overlay.className = 'calibrate-overlay-img';
+                            overlay.src = `../global assets/Images/targets/${pageKey}-target.png`;
+                            overlay.alt = 'Target Overlay';
+                            stage.appendChild(overlay);
+                        }
+                    }
+
+                    const headingsLayer = stage.querySelector('.yarika-headings-layer');
+                    const slotsLayer = stage.querySelector('.yarika-slots-layer');
+
+                    if (headingsLayer && Array.isArray(pageData.sections)) {
+                        headingsLayer.innerHTML = pageData.sections.map(sec => window.renderSectionHeadingHtml(sec)).join('');
+                    }
+
+                    if (slotsLayer && Array.isArray(pageData.slots)) {
+                        if (slotsLayer.children.length !== pageData.slots.length) {
+                            slotsLayer.innerHTML = pageData.slots.map((slot, idx) => window.renderSlotHtml(slot, isCalibrate, idx)).join('');
+                        }
+                    }
+                });
+            }
+
+            function updateCatalogFromData(data) {
+                if (!data) return;
+                window._cachedCatalogData = data;
+                console.log("[YarikaCatalog] Rendering absolute collage stages from MySQL data:", data);
+
+                if (data.page4) renderYarikaPage('page4', data.page4);
+                if (data.page5) renderYarikaPage('page5', data.page5);
+            }
+
+            window.renderCatalogCardsFromCache = function () {
+                if (window._cachedCatalogData) {
+                    updateCatalogFromData(window._cachedCatalogData);
+                }
+            };
+
+            window.syncProductsCatalog = function () {
+                const databaseApi = resolveApiUrl();
+                console.log("[YarikaCatalog] Fetching sections & slots from API:", databaseApi);
+
+                return fetch(databaseApi)
+                    .then(r => {
+                        if (!r.ok) throw new Error('API status ' + r.status);
+                        return r.json();
+                    })
+                    .then(data => {
+                        console.log("[YarikaCatalog] Data loaded successfully from API:", data);
+                        if (data && (data.page4 || data.page5)) {
+                            updateCatalogFromData(data);
+                        }
+                        return data;
+                    })
+                    .catch(err => {
+                        console.error("[YarikaCatalog] Failed to load catalog from API:", err);
+                        return null;
+                    });
+            };
+
+            // Initial load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    window.syncProductsCatalog();
+                });
+            } else {
+                window.syncProductsCatalog();
+            }
+
+            // Periodic sanity check to ensure Turn.js cloned pages are kept hydrated
+            setInterval(() => {
+                if (window._cachedCatalogData) {
+                    const emptyLayers = Array.from(document.querySelectorAll('.yarika-slots-layer')).filter(l => l.children.length === 0);
+                    if (emptyLayers.length > 0) {
+                        updateCatalogFromData(window._cachedCatalogData);
+                    }
+                }
+            }, 1000);
+        })();
+    </script>
+    <script type="text/javascript">
+        // Change these settings
+
+        gsap.config({
+            nullTargetWarn: false
+        });
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+
+        const normal = { width: 1450, height: 900 };
+
+        const heightLower = (windowHeight >= 700) ? 690 : 550;
+        const widthLower = (windowHeight >= 700) ? 1100 : 900;
+
+        const lower = { width: widthLower, height: heightLower };
+
+        // Mobile sizing: Turn.js 2-page spread width (2 x 449 = 898), height: 558
+        // Each page is exactly 449 x 558 (matching desktop aspect ratio)
+        const mobile = {
+            width: 898,
+            height: 558
+        };
+
+        // choose correct size
+        let crctSize;
+        if (windowWidth <= 768) {
+            crctSize = mobile;
+        } else if (windowWidth > 1280) {
+            crctSize = normal;
+        } else {
+            crctSize = lower;
+        }
+
+
+
+
+
+        // console.log('correct width: ', crctSize.width);
+        // console.log('correct height: ', crctSize.height);
+        FlipbookSettings = {
+            options: {
+                width: crctSize.width,
+                height: crctSize.height,
+                autoCenter: true,
+                smartFlip: false,
+                acceleration: false,
+                pages:4,
+                when: {
+                    turning: function () {
+                        document.getElementById("flipaudio")?.play();
+                    }
+                }
+            }
+        };
+
+        if (windowWidth <= 768) {
+            const el = document.querySelector(".catalog-app");
+            if (el) {
+                el.style.width = "100vw";
+                el.style.height = "100vh";
+                el.style.maxWidth = "100%";
+            }
+        }
+
+
+
+        const fsBtn = document.getElementById("full-screen-btn");
+        const fullIcon = "../global%20assets/icons/full-screen-icon.svg";
+        const exitIcon = "../global%20assets/icons/normal-screen-icon.svg";
+
+        let isFullscreen = false;
+
+        function syncFullscreenClass(activeState) {
+            let isFS = false;
+            if (typeof activeState === 'boolean') {
+                isFS = activeState;
+            } else {
+                try {
+                    isFS = !!(
+                        document.fullscreenElement ||
+                        document.webkitFullscreenElement ||
+                        document.mozFullScreenElement ||
+                        document.msFullscreenElement
+                    );
+                } catch (e) { }
+
+                if (!isFS) {
+                    try {
+                        if (window.parent && window.parent !== window && window.parent.document) {
+                            isFS = !!(
+                                window.parent.document.fullscreenElement ||
+                                window.parent.document.webkitFullscreenElement ||
+                                window.parent.document.mozFullScreenElement ||
+                                window.parent.document.msFullscreenElement
+                            );
+                        }
+                    } catch (e) { }
+                }
+
+                // Check desktop screen size match for F11 or browser fullscreen mode
+                if (!isFS && window.innerWidth >= 1024) {
+                    if (Math.abs(window.innerWidth - screen.width) <= 15 && Math.abs(window.innerHeight - screen.height) <= 15) {
+                        isFS = true;
+                    }
+                }
+            }
+
+            isFullscreen = isFS;
+            if (fsBtn) {
+                fsBtn.src = isFS ? exitIcon : fullIcon;
+            }
+            document.body.classList.toggle('is-fullscreen', isFS);
+            document.documentElement.classList.toggle('is-fullscreen', isFS);
+        }
+
+        $('.full-screen').on('click', function () {
+            isFullscreen = !isFullscreen;
+            syncFullscreenClass(isFullscreen);
+            try {
+                window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+            } catch (e) { }
+        });
+
+        $(document).on('keydown', function (event) {
+            if ((event.key === 'Escape' || event.keyCode === 27) && isFullscreen) {
+                isFullscreen = false;
+                syncFullscreenClass(false);
+                try {
+                    window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+                } catch (e) { }
+            }
+        });
+
+        document.addEventListener('fullscreenchange', () => syncFullscreenClass());
+        document.addEventListener('webkitfullscreenchange', () => syncFullscreenClass());
+        document.addEventListener('mozfullscreenchange', () => syncFullscreenClass());
+        document.addEventListener('MSFullscreenChange', () => syncFullscreenClass());
+        window.addEventListener('resize', () => syncFullscreenClass());
+
+
+
+
+        $('#flipbook').bind('turning', function (event, page, view) {
+            resetPageImages(); // Clear or reset before the page turns
+        });
+
+        $('#flipbook').bind('turning', function (event, page, view) {
+
+            const isMobile = window.innerWidth <= 768;
+
+            resetPageImages(); // Clear animations before page turns
+
+
+
+            // ============== Page 1 - Home ==============
+            if (page === 1) {
+
+            }
+
+            // ============== Page 2-3 - About Us & Table of Contents ==============
+            if (page === 2 || page === 3) {
+
+            }
+
+            // ============== Page 4-5 - Round Containers ==============
+            if (page === 4 || page === 5) {
+
+            }
+            if (page === 5) {
+
+            }
+
+            // ============== Page 6-7 - Round Square ==============
+            if (page === 8 || page === 9) {
+
+            }
+            if (page === 8) {
+
+            }
+            if (page === 9) {
+
+            }
+
+            // ============== Page 8-9 - Oval ==============
+            if (page === 6 || page === 7) {
+
+            }
+            if (page === 6) {
+
+            }
+
+            // ============== Page 10-11 - SweetBox ==============
+            if (page === 10 || page === 11) {
+
+            }
+            if (page === 10) {
+
+            }
+
+
+
+            // ============== Dynamic Image Animation for All Other Pages ==============
+            animateViewImages(view);
+
+            // Update page counter
+            updateActiveThumbnail(page);
+        });
+
+        // Fail-safe: Ensure all images on active pages are visible once page turn completes
+        $('#flipbook').bind('turned', function (event, page, view) {
+            const currentView = view || [page];
+            currentView.forEach(p => {
+                const $pageEl = getPageElement(p);
+                if ($pageEl && $pageEl.length > 0) {
+                    $pageEl.find('img').css('opacity', '1');
+                }
+            });
+            if (currentView.includes(4) || currentView.includes(5) || page === 4 || page === 5) {
+                if (typeof window.renderCatalogCardsFromCache === 'function') {
+                    window.renderCatalogCardsFromCache();
+                }
+            }
+        });
+
+        function getPageElement(p) {
+            if (!p) return $();
+            let $el = $('#flipbook').turn('pageElement', p);
+            if ($el && $el.length > 0) return $el;
+
+            $el = $(`.p${p}`);
+            if ($el && $el.length > 0) return $el;
+
+            $el = $(`.page-${p}`);
+            if ($el && $el.length > 0) return $el;
+
+            $el = $('#flipbook .page').eq(p - 1);
+            if ($el && $el.length > 0) return $el;
+
+            return $();
+        }
+
+        function shouldAnimateImage($img) {
+            const src = $img.attr('src') || '';
+            const alt = $img.attr('alt') || '';
+            const className = $img.attr('class') || '';
+
+            // Filter out shadows
+            if (className.includes('gutter-shadow') || className.includes('shadow-')) return false;
+            // Filter out background images
+            if (alt.includes('background') || src.includes('background') || src.includes('bottom-image') || src.includes('white-bg')) return false;
+            // Filter out logo
+            if (alt.includes('logo') || src.includes('logo')) return false;
+            // Filter out website link
+            if (alt.includes('website-link') || src.includes('website-link')) return false;
+            // Filter out dynamic product card images, product page containers, and Yarika collage slots
+            if ($img.closest('.product-img-wrap, .products-page-container, .product-item-card, .yarika-page-stage, .slot').length > 0) return false;
+            // Filter out specific page 2 & 3 classes to avoid double animation handling
+            if (className.includes('page-2-left') || className.includes('page-2-right') ||
+                className.includes('page-2-up') || className.includes('page-2-down') ||
+                className.includes('popup_images2') ||
+                className.includes('page-3-left') || className.includes('page-3-right') ||
+                className.includes('page-3-up') || className.includes('page-3-down') ||
+                className.includes('popup_images3')) {
+                return false;
+            }
+            return true;
+        }
+
+        function getImageAnimationType($img) {
+            const src = $img.attr('src') || '';
+            const className = $img.attr('class') || '';
+
+            if (src.includes('position')) {
+                return 'popup';
+            }
+            if (src.includes('specifications')) {
+                return 'left-to-right';
+            }
+            if (src.includes('configurations')) {
+                return 'left-to-right';
+            }
+            if (src.includes('text')) {
+                return 'up-to-down';
+            }
+            if (src.includes('-image') || src.endsWith('.webp') || src.endsWith('.png') || className.includes('shadow-md')) {
+                return 'down-to-up';
+            }
+
+            return 'popup';
+        }
+
+        function resetPageImages() {
+            // Reset existing specific elements
+            gsap.set('.page-2-left, .page-2-right, .page-2-up, .page-2-down, .popup_images2, .page-3-left, .page-3-right, .page-3-up, .page-3-down, .popup_images3', {
+                opacity: 0,
+                x: 0,
+                y: 0,
+                scale: 1
+            });
+            gsap.set('.services_grid_main img, .slide_up_image, .fade_in_images, .popup', { opacity: 0 });
+
+            // Reset all other page content images based on their animation type
+            $('.page img').each(function () {
+                const $img = $(this);
+                if (shouldAnimateImage($img)) {
+                    const animType = getImageAnimationType($img);
+                    if (animType === 'popup') {
+                        gsap.set($img, { opacity: 0, scale: 0.5, x: 0, y: 0 });
+                    } else if (animType === 'left-to-right') {
+                        gsap.set($img, { opacity: 0, x: -80, y: 0, scale: 1 });
+                    } else if (animType === 'up-to-down') {
+                        gsap.set($img, { opacity: 0, x: 0, y: -80, scale: 1 });
+                    } else if (animType === 'down-to-up') {
+                        gsap.set($img, { opacity: 0, x: 0, y: 80, scale: 1 });
+                    }
+                }
+            });
+        }
+
+        function animateViewImages(view) {
+            if (!view) return;
+
+            view.forEach(p => {
+                const $pageEl = getPageElement(p);
+                if ($pageEl.length === 0) return;
+
+                const groups = {
+                    'popup': [],
+                    'left-to-right': [],
+                    'up-to-down': [],
+                    'down-to-up': []
+                };
+
+                $pageEl.find('img').each(function () {
+                    const $img = $(this);
+                    if (shouldAnimateImage($img)) {
+                        const animType = getImageAnimationType($img);
+                        groups[animType].push(this);
+                    }
+                });
+
+                if (groups['up-to-down'].length > 0) {
+                    gsap.fromTo(groups['up-to-down'],
+                        { opacity: 0, y: -80 },
+                        { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power3.out" }
+                    );
+                }
+
+                if (groups['down-to-up'].length > 0) {
+                    gsap.fromTo(groups['down-to-up'],
+                        { opacity: 0, y: 80 },
+                        { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power3.out" }
+                    );
+                }
+
+                if (groups['left-to-right'].length > 0) {
+                    gsap.fromTo(groups['left-to-right'],
+                        { opacity: 0, x: -80 },
+                        { opacity: 1, x: 0, duration: 1.2, stagger: 0.15, ease: "power3.out" }
+                    );
+                }
+
+                if (groups['popup'].length > 0) {
+                    gsap.fromTo(groups['popup'],
+                        { opacity: 0, scale: 0.5 },
+                        { opacity: 1, scale: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" }
+                    );
+                }
+            });
+        }
+
+        function Page2LeftAnimation() {
+            gsap.fromTo(
+                ".page-2-left",
+                { opacity: 0, x: -80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    x: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.5,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+
+
+        }
+
+        function Page2RightAnimation() {
+            gsap.fromTo(
+                ".page-2-right",
+                { opacity: 0, x: 80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    x: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.5,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+        function Page2UpAnimation() {
+            gsap.fromTo(
+                ".page-2-up",
+                { opacity: 0, y: -80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    y: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.5,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+
+        function Page2DownAnimation() {
+            gsap.fromTo(
+                ".page-2-down, .page-2-down-2",
+                { opacity: 0, y: 80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    y: 0,                  // move to normal position
+                    duration: 1,
+                    stagger: 0.5,          // reveal one by one if multiple
+                    ease: "power3.out"
+                },
+
+            );
+
+            gsap.fromTo(
+                " .page-2-down-2",
+                { opacity: 0, y: 80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    y: 0,                  // move to normal position
+                    duration: 1,
+                    stagger: 0.5,          // reveal one by one if multiple
+                    ease: "power3.out"
+                },
+
+            );
+
+        }
+        function Page2Animation() {
+
+            gsap.fromTo('.popup_images2',
+                { opacity: 0, scale: 0.5 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                }
+            );
+
+        }
+
+        function page3Animation() {
+            gsap.fromTo('.page-3-up',
+                { opacity: 0, y: -60 },
+                { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+            );
+            gsap.fromTo('.page-3-left',
+                { opacity: 0, x: -70 },
+                { opacity: 1, x: 0, duration: 1.2, delay: 0.15, ease: "power3.out" }
+            );
+            gsap.fromTo('.page-3-right',
+                { opacity: 0, x: 70 },
+                { opacity: 1, x: 0, duration: 1.2, delay: 0.25, ease: "power3.out" }
+            );
+            gsap.fromTo('.page-3-down',
+                { opacity: 0, y: 60, scale: 0.9 },
+                { opacity: 1, y: 0, scale: 1, duration: 1.2, delay: 0.35, ease: "power3.out" }
+            );
+            gsap.fromTo('.popup_images3',
+                { opacity: 0, scale: 0.5 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.75,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                }
+            );
+        }
+
+
+        function DownAnimation() {
+            gsap.fromTo(
+                ".down-img",
+                { opacity: 0, y: 80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    y: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.1,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+
+        function UpAnimation() {
+            gsap.fromTo(
+                ".up-img",
+                { opacity: 0, y: -80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    y: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.1,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+
+        function RightAnimation() {
+            gsap.fromTo(
+                ".right-img",
+                { opacity: 0, x: 80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    x: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.1,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+
+        function LeftAnimation() {
+            gsap.fromTo(
+                ".left-img",
+                { opacity: 0, x: -80 },   // start: hidden + shifted to the right
+                {
+                    opacity: 1,
+                    x: 0,                  // move to normal position
+                    duration: 1.5,
+                    stagger: 0.1,          // reveal one by one if multiple
+                    ease: "power3.out"
+                }
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+    <script>
+        // document.getElementById("location-1").addEventListener("click", () => {
+        //   // Replace with your actual Google Maps link
+        //   window.open("", "_blank");
+        // });
+        document.querySelectorAll("#location-1, #location-2, #location-3")
+            .forEach(el => {
+                el.addEventListener("click", () => {
+
+
+                    const placeName = "Mathurams Engineering IDC";
+
+                    const mapUrl = `https://maps.app.goo.gl/E9n6XqfbP5y4ohVp9`;
+
+                    window.open(mapUrl, "_blank");
+                });
+            });
+
+
+    </script>
+
+    <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js  "></script>  -->
+
+    <script>
+        $(document).ready(function () {
+            var isMobile = ('ontouchstart' in window) || $(window).width() <= 1024;
+
+            if (isMobile) {
+                $('#flipbook').on('touchstart touchmove', '.page-wrapper, .page', function (e) {
+                    var $target = $(e.target);
+
+                    // Allow if the target is a control element
+                    var isControl =
+                        $target.is('#nextPage, #prevPage, .flip-next, .flip-prev, button, img, a, .exp-3d-card') ||
+                        $target.closest('#nextPage, #prevPage, .flip-next, .flip-prev, button, a, .exp-3d-card').length > 0;
+
+                    // Allow no-flip-zone elements
+                    var isNoFlipZone =
+                        $target.hasClass('no-flip-zone') ||
+                        $target.closest('.no-flip-zone').length > 0 ||
+                        $target.is('#round-previous-button, #round-next-button') ||
+                        $target.closest('#SB-right-track-wrapper, #SBTE-right-track-wrapper').length > 0 ||
+                        $target.is('#ice-cream-round-next-btn, #ice-cream-round-previous-btn') ||
+                        $target.closest('#square-bucket-bottom-strip').length > 0 ||
+                        $target.closest('#autoScrollBtn, #toggleCircle, #scrollContainer, .image-click-wrapper, .exp-3d-container, .exp-3d-card, a[href*="lightBox"]').length > 0 ||
+                        $target.hasClass('image-click-zone') || $target.hasClass('toc-image-link') || $target.hasClass('exp-3d-card');
+
+                    if (isControl || isNoFlipZone) {
+                        // Allow the event to pass through
+                        e.stopPropagation();
+                        return true;
+                    }
+
+                    // Block flipbook page flip for non-interactive elements
+                    if (e.type === 'touchmove') {
+                        e.preventDefault();
+                    }
+                    e.stopPropagation();
+                    return false;
+                });
+            }
+            // Desktop: Also prevent flip on these elements
+            else {
+                $('#autoScrollBtn, #toggleCircle, #scrollContainer').on('click', function (e) {
+                    e.stopPropagation();
+                });
+
+                // Desktop: Click zones navigate
+                $('.image-click-zone').on('click', function (e) {
+                    e.stopPropagation();
+                    var pageNum = $(this).data('page');
+                    if (pageNum && $('#flipbook').turn) {
+                        $('#flipbook').turn('page', pageNum);
+                    }
+                });
+
+                // Desktop: Block image clicks
+                $('#scrollContainer img').on('click', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    return false;
+                });
+            }
+        });
+    </script>
+
+
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.querySelectorAll(
+                '.contact-link, .exp-3d-card, a[href*="lightBox"]'
+            ).forEach(el => {
+                el.style.pointerEvents = 'auto';
+                el.style.touchAction = 'manipulation';
+                el.style.zIndex = '9999';
+
+                // Stop flipbook swipe from blocking taps
+                el.addEventListener('touchstart', e => {
+                    e.stopPropagation();
+                }, { passive: true });
+                el.addEventListener('touchend', e => {
+                    e.stopPropagation();
+                }, { passive: true });
+            });
+
+            let lastModelOpenTime = 0;
+            document.querySelectorAll('.exp-3d-card, a[href*="lightBox"]').forEach(el => {
+                const openModel = function (e) {
+                    const now = Date.now();
+                    if (now - lastModelOpenTime < 500) return;
+                    lastModelOpenTime = now;
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    const url = el.getAttribute('href');
+                    if (url) {
+                        window.open(url, '_blank');
+                    }
+                };
+
+                el.addEventListener('click', openModel);
+                el.addEventListener('pointerup', function (e) {
+                    if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+                        openModel(e);
+                    }
+                });
+            });
+
+        });
+
+
+
+
+
+
+
+        // Add this JavaScript code at the end of your main.js file
+
+        // ==================== BOTTOM THUMBNAIL NAVIGATION ====================
+        document.addEventListener('DOMContentLoaded', function () {
+            const thumbDots = document.querySelectorAll('.thumb-dot');
+
+            // Click handler for navigation
+            thumbDots.forEach(dot => {
+                dot.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const pageNum = parseInt(this.dataset.page);
+
+                    // Navigate to page
+                    if ($('#flipbook').turn) {
+                        $('#flipbook').turn('page', pageNum);
+                    }
+
+                    // Update active state
+                    updateActiveThumb(pageNum);
+                });
+            });
+
+            // Update active thumbnail on page turn
+            $('#flipbook').bind('turned', function (event, page) {
+                updateActiveThumb(page);
+            });
+
+            // Function to update active thumbnail
+            function updateActiveThumb(currentPage) {
+                thumbDots.forEach(dot => {
+                    const dotPage = parseInt(dot.dataset.page);
+
+                    // Check if current page matches this dot's page or spread
+                    if (dotPage === currentPage ||
+                        (dotPage + 1 === currentPage && dotPage > 1)) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            // Initialize on load
+            const initialPage = $('#flipbook').turn('page') || 1;
+            updateActiveThumb(initialPage);
+        });
+
+        // ==================== SIMPLE AUTOPLAY FUNCTIONALITY ====================
+        (function () {
+            const autoplayBtn = document.getElementById('iconAutoplay');
+            const autoplayProgress = document.getElementById('autoplayProgress');
+
+            let isAutoPlaying = false;
+            let autoplayInterval = null;
+            let progressInterval = null;
+            const autoplayDelay = 3000; // âœ… Reduced to 3 seconds per page
+            let currentProgress = 0;
+
+            window.isAutoPlaying = false;
+
+            function updateAutoplayIcon(playing) {
+                if (!autoplayBtn) return;
+
+                if (playing) {
+                    autoplayBtn.classList.add('active');
+                    autoplayBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="10" y1="8" x2="10" y2="16"/>
+                    <line x1="14" y1="8" x2="14" y2="16"/>
+                </svg>
+            `;
+                } else {
+                    autoplayBtn.classList.remove('active');
+                    autoplayBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+                </svg>
+            `;
+                }
+            }
+
+            function updateProgress() {
+                if (isAutoPlaying) {
+                    currentProgress += (100 / (autoplayDelay / 100));
+                    if (currentProgress >= 100) currentProgress = 0;
+                    if (autoplayProgress) autoplayProgress.style.width = currentProgress + '%';
+                }
+            }
+
+            function flipNext() {
+                const currentPage = $('#flipbook').turn('page');
+                const totalPages = $('#flipbook').turn('pages');
+
+                if (currentPage >= totalPages) {
+                    // Autoplay finished - stop autoplay and return to home page (front page)
+                    stopAutoplay();
+                    $('#flipbook').turn('page', 1);
+                    return;
+                }
+
+                $('#flipbook').turn('next');
+                currentProgress = 0;
+            }
+
+            function startAutoplay() {
+                if (isAutoPlaying) return;
+
+                isAutoPlaying = true;
+                window.isAutoPlaying = true;
+                updateAutoplayIcon(true); // âœ… Icon updates immediately
+
+                if (autoplayProgress) {
+                    autoplayProgress.classList.add('active');
+                    autoplayProgress.style.width = '0%';
+                }
+
+                // âœ… If on last page, go to page 1 first then start autoplay
+                const currentPage = $('#flipbook').turn('page');
+                const totalPages = $('#flipbook').turn('pages');
+
+                if (currentPage >= totalPages) {
+                    $('#flipbook').turn('page', 1);
+                    currentProgress = 0;
+                } else {
+                    flipNext();
+                }
+
+                currentProgress = 0;
+                progressInterval = setInterval(updateProgress, 100);
+
+                // âœ… Then keep flipping every autoplayDelay ms
+                autoplayInterval = setInterval(flipNext, autoplayDelay);
+
+                console.log('âœ… Autoplay started - immediate first flip');
+            }
+
+            function stopAutoplay() {
+                if (!isAutoPlaying) return;
+
+                isAutoPlaying = false;
+                window.isAutoPlaying = false;
+                updateAutoplayIcon(false); // âœ… Icon updates immediately
+
+                if (autoplayProgress) {
+                    autoplayProgress.classList.remove('active');
+                    autoplayProgress.style.width = '0%';
+                }
+
+                if (autoplayInterval) { clearInterval(autoplayInterval); autoplayInterval = null; }
+                if (progressInterval) { clearInterval(progressInterval); progressInterval = null; }
+
+                currentProgress = 0;
+                console.log('â¸ï¸ Autoplay stopped');
+            }
+
+            if (autoplayBtn) {
+                autoplayBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (isAutoPlaying) {
+                        stopAutoplay();
+                    } else {
+                        startAutoplay();
+                    }
+                });
+            }
+
+            // âœ… Stop autoplay only when user manually drags a corner
+            $('#flipbook').bind('start', function (event, pageObject, corner) {
+                if (isAutoPlaying && corner) {
+                    stopAutoplay();
+                }
+            });
+
+            // Spacebar toggle
+            document.addEventListener('keydown', function (e) {
+                if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+                    e.preventDefault();
+                    if (isAutoPlaying) { stopAutoplay(); } else { startAutoplay(); }
+                }
+            });
+
+            updateAutoplayIcon(false);
+        })();
+
+
+
+
+        // ***************************Mobile nav functionality start************************************** 
+
+
+
+
+
+    </script>
+    <script>
+        // ==================== MOBILE NAVIGATION FUNCTIONALITY ====================
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // ===== Element References =====
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+            const mobileTocBtn = document.getElementById('mobileTocBtn');
+            const mobileTocPanel = document.getElementById('mobileTocPanel');
+            const mobileTocClose = document.getElementById('mobileTocClose');
+            const mobileTocOverlay = document.getElementById('mobileTocOverlay');
+            const mobileTocItems = document.querySelectorAll('.mobile-toc-item');
+
+            const mobileAudioBtn = document.getElementById('mobileAudioBtn');
+            const mobileAudioIcon = document.getElementById('mobileAudioIcon');
+            const mobileAudioStatus = document.getElementById('mobileAudioStatus');
+
+            const mobileShareBtn = document.getElementById('mobileShareBtn');
+            const mobileFullscreenBtn = document.getElementById('mobileFullscreenBtn');
+            const mobileHomeBtn = document.getElementById('mobileHomeBtn');
+
+            const mobilePageCurrent = document.getElementById('mobilePageCurrent');
+            const mobilePageTotal = document.getElementById('mobilePageTotal');
+
+            // ===== 3-Dot Menu Toggle =====
+            function openDropdown() {
+                mobileDropdownMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+            }
+
+            function closeDropdown() {
+                mobileDropdownMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (mobileDropdownMenu.classList.contains('active')) {
+                        closeDropdown();
+                    } else {
+                        openDropdown();
+                    }
+                });
+            }
+
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeDropdown);
+            }
+
+            // ===== Table of Contents Panel =====
+            function openToc() {
+                if (typeof window.closeThumbDrawer === 'function') {
+                    window.closeThumbDrawer();
+                } else {
+                    const thumbDrawer = document.getElementById('thumbnailDrawer');
+                    if (thumbDrawer) thumbDrawer.classList.remove('show');
+                }
+                mobileTocPanel.classList.add('active');
+                mobileTocOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeToc() {
+                mobileTocPanel.classList.remove('active');
+                mobileTocOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileTocBtn) {
+                mobileTocBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const desktopThumbToggle = document.getElementById('desktopThumbToggle');
+                    if (desktopThumbToggle) {
+                        desktopThumbToggle.click();
+                    } else if (typeof window.toggleThumbDrawer === 'function') {
+                        window.toggleThumbDrawer();
+                    } else {
+                        openToc();
+                    }
+                });
+            }
+
+            if (mobileTocClose) {
+                mobileTocClose.addEventListener('click', closeToc);
+            }
+
+            if (mobileTocOverlay) {
+                mobileTocOverlay.addEventListener('click', closeToc);
+            }
+
+            // TOC Item Click - Navigate to page
+            mobileTocItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const pageNum = parseInt(this.dataset.page);
+
+                    if ($('#flipbook').turn) {
+                        $('#flipbook').turn('page', pageNum);
+                    }
+
+                    // Update active state
+                    updateTocActive(pageNum);
+
+                    // Close TOC panel
+                    closeToc();
+                });
+            });
+
+            function updateTocActive(page) {
+                mobileTocItems.forEach(item => {
+                    const itemPage = parseInt(item.dataset.page);
+                    item.classList.toggle('active', itemPage === page);
+                });
+            }
+
+            // ===== Audio Toggle is handled centrally by script.js (window.toggleBgmMusic) =====
+
+            // ===== Share Button =====
+            if (mobileShareBtn) {
+                mobileShareBtn.addEventListener('click', function () {
+                    closeDropdown();
+                    showShareMenu(); // reuse desktop modal
+                });
+            }
+            // ===== Fullscreen Button =====
+            if (mobileFullscreenBtn) {
+                mobileFullscreenBtn.addEventListener('click', function () {
+                    closeDropdown();
+
+                    // Toggle fullscreen
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(err => {
+                            console.log('Fullscreen error:', err);
+                        });
+                    } else {
+                        document.exitFullscreen();
+                    }
+                });
+            }
+
+            // ===== Home Button (Logo Click) =====
+            if (mobileHomeBtn) {
+                mobileHomeBtn.addEventListener('click', function () {
+                    if ($('#flipbook').turn) {
+                        $('#flipbook').turn('page', 1);
+                    }
+                });
+            }
+
+            // ===== Update Page Number on Flip =====
+            function updateMobilePageNumber(page) {
+                if (mobilePageCurrent) {
+                    mobilePageCurrent.textContent = page;
+                }
+            }
+
+            // Initial page total
+            if (mobilePageTotal) {
+                setTimeout(() => {
+                    const totalPages = $('#flipbook').turn('pages');
+                    mobilePageTotal.textContent = totalPages;
+                }, 500);
+            }
+
+            // Listen for page turns
+            $('#flipbook').bind('turned', function (event, page) {
+                updateMobilePageNumber(page);
+                updateTocActive(page);
+            });
+
+            // ===== Close dropdown on window resize (if going to desktop) =====
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 1024) {
+                    closeDropdown();
+                    closeToc();
+                }
+            });
+
+            // ===== Swipe to close TOC (optional enhancement) =====
+            let touchStartX = 0;
+
+            if (mobileTocPanel) {
+                mobileTocPanel.addEventListener('touchstart', function (e) {
+                    touchStartX = e.touches[0].clientX;
+                }, { passive: true });
+
+                mobileTocPanel.addEventListener('touchmove', function (e) {
+                    const touchX = e.touches[0].clientX;
+                    const diff = touchStartX - touchX;
+
+                    if (diff > 50) {
+                        closeToc();
+                    }
+                }, { passive: true });
+            }
+
+
+        });
+    </script>
+    <script>
+
+
+
+        // ============================================
+        // FLIPBOOK PAGE ANIMATIONS
+        // ============================================
+
+        // Store animation elements
+        const pageElements = {
+            page1: {
+                containerImage: null,
+                imlDesignText: null,
+                smartPackingText: null,
+                innovateTodayText: null,
+                foodSafetyText: null,
+                greenerTomorrowText: null
+            }
+        };
+
+        // Initialize elements after DOM is ready
+        $(document).ready(function () {
+            // Cache Page 1 elements
+            pageElements.page1.containerImage = document.getElementById('container-image');
+            pageElements.page1.imlDesignText = document.getElementById('iml-design-text');
+            pageElements.page1.smartPackingText = document.getElementById('smart-packing-text');
+            pageElements.page1.innovateTodayText = document.getElementById('innovate-today-text');
+            pageElements.page1.foodSafetyText = document.getElementById('food-safety-text');
+            pageElements.page1.greenerTomorrowText = document.getElementById('greener-tomorrow-text');
+        });
+
+
+        // Also trigger on 'turned' for when page flip completes
+        $('#flipbook').bind('turned', function (event, page, view) {
+            // Animate currently visible page(s) and reset others (works on both double-page desktop and single-page mobile)
+            try {
+                let currentPages = [];
+                if ($('#flipbook').turn) {
+                    currentPages = $('#flipbook').turn('view', page);
+                }
+                if (!currentPages || currentPages.length === 0) {
+                    currentPages = [page];
+                } else if (!currentPages.includes(page)) {
+                    currentPages.push(page);
+                }
+
+                document.querySelectorAll('.page-animated').forEach(p => {
+                    p.classList.remove('animation-on');
+                });
+                currentPages.forEach(pNum => {
+                    if (pNum > 0) {
+                        const pageEls = document.querySelectorAll(`.page-${pNum}, .p${pNum}`);
+                        pageEls.forEach(pageEl => {
+                            setTimeout(() => {
+                                pageEl.classList.add('animation-on');
+                            }, 50);
+                        });
+                    }
+                });
+            } catch (err) {
+                console.error("Page turn animation error:", err);
+            }
+        });
+
+    </script>
+
+
+    <script>
+
+        // Function to load SVGs and structure animated elements
+        function loadSVGs(container) {
+            const svgContainers = container ?
+                container.querySelectorAll('.svg-container') :
+                document.querySelectorAll('.svg-container');
+
+            const loadPromises = [];
+
+            svgContainers.forEach(container => {
+                const src = container.getAttribute('data-src');
+                if (src && !container.dataset.loaded) {
+                    container.dataset.loaded = 'true'; // Prevent double-loading
+                    const p = fetch(src)
+                        .then(response => {
+                            if (!response.ok) throw new Error(`Failed to load ${src}`);
+                            return response.text();
+                        })
+                        .then(svgText => {
+                            const parser = new DOMParser();
+                            const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
+                            const svgEl = svgDoc.querySelector("svg");
+                            if (svgEl) {
+                                svgEl.removeAttribute("width");
+                                svgEl.removeAttribute("height");
+                                svgEl.style.width = "100%";
+                                svgEl.style.height = "100%";
+                                svgEl.classList.add("svg-full-page");
+
+                                // Process SVG elements by clustering elements into logical parent groups (<g>)
+                                // NEVER animate individual vectors (<path>) alone, as text and composite graphics
+                                // would fragment and break apart.
+                                const allChildren = Array.from(svgEl.children);
+                                const staticTags = ['defs', 'clippath', 'mask', 'pattern', 'filter', 'style'];
+
+                                // Step 1: Identify background elements (definitions, masks, first background rectangles, background wave fills)
+                                allChildren.forEach((child, idx) => {
+                                    const tag = child.tagName.toLowerCase();
+                                    if (staticTags.includes(tag)) {
+                                        child.classList.add('svg-static-bg');
+                                    } else if (idx === 0 && tag === 'rect') {
+                                        child.classList.add('svg-static-bg');
+                                    } else if ((child.hasAttribute('mask') || child.hasAttribute('clip-path')) && idx < 2) {
+                                        child.classList.add('svg-static-bg');
+                                    }
+                                });
+
+                                // Step 2: Collect consecutive non-static child elements and group them into logical parent <g> containers
+                                const animatableNodes = [];
+                                allChildren.forEach((child, idx) => {
+                                    if (child.classList.contains('svg-static-bg')) return;
+
+                                    // If child is the main background banner/base path at the top
+                                    const tag = child.tagName.toLowerCase();
+                                    const d = child.getAttribute('d') || '';
+                                    if (idx <= 2 && tag === 'path' && d.length > 200 && (d.startsWith('M0 0') || d.startsWith('M449 0') || d.startsWith('M0 14') || d.startsWith('M0 56') || d.startsWith('M0 43'))) {
+                                        // Keep large background wave paths static
+                                        child.classList.add('svg-static-bg');
+                                        return;
+                                    }
+
+                                    animatableNodes.push(child);
+                                });
+
+                                // Check if explicit heading and content elements or IDs exist in this SVG
+                                const isProblemsPage = src.includes('problems-page');
+
+                                // On the problems page, identify the 6 problem card images and tag them as #image-1 to #image-6 with popup animation
+                                if (isProblemsPage) {
+                                    // Image 1 is Rectangle with fill pattern0 inside Group 594
+                                    const rect1 = svgEl.querySelector('rect[fill*="pattern0"]');
+                                    if (rect1) {
+                                        rect1.setAttribute('id', 'image-1');
+                                        rect1.classList.add('svg-parent-group', 'anim-popup');
+                                    }
+                                    // Images 2 to 6 are in Clip path group, Clip path group_2 .. 5
+                                    const clipGroups = [
+                                        svgEl.querySelector('#Group\\ 597 [id*="Clip path group"]') || svgEl.querySelector('[id="Clip path group"]'),
+                                        svgEl.querySelector('#Group\\ 600 [id*="Clip path group"]') || svgEl.querySelector('[id="Clip path group_2"]'),
+                                        svgEl.querySelector('#Group\\ 603 [id*="Clip path group"]') || svgEl.querySelector('[id="Clip path group_3"]'),
+                                        svgEl.querySelector('#Group\\ 606 [id*="Clip path group"]') || svgEl.querySelector('[id="Clip path group_4"]'),
+                                        svgEl.querySelector('#Group\\ 609 [id*="Clip path group"]') || svgEl.querySelector('[id="Clip path group_5"]')
+                                    ];
+                                    clipGroups.forEach((cg, idx) => {
+                                        if (cg) {
+                                            const imgNum = idx + 2;
+                                            cg.setAttribute('id', `image-${imgNum}`);
+                                            cg.classList.add('svg-parent-group', 'anim-popup');
+                                            // Strip animation classes from internal vector and rect elements
+                                            cg.querySelectorAll('path, rect, circle, polygon').forEach(v => {
+                                                v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                            });
+                                        }
+                                    });
+                                }
+
+                                const isOpportunitiesPage = src.includes('opportunities-page');
+                                if (isOpportunitiesPage) {
+                                    // Target main-heading, content, benefit-1..7, bottom-content
+                                    const oppElements = svgEl.querySelectorAll('#main-heading, #content, [id^="benefit-"], #bottom-content, #title');
+                                    oppElements.forEach(el => {
+                                        const id = el.id || '';
+                                        if (id === 'main-heading' || id === 'content') {
+                                            el.classList.add('svg-parent-group', 'reveal-top-left');
+                                        } else if (id === 'benefit-1' || id === 'benefit-3' || id === 'benefit-5' || id === 'benefit-7') {
+                                            el.classList.add('svg-parent-group', 'reveal-left');
+                                        } else if (id === 'benefit-2' || id === 'benefit-4' || id === 'benefit-6') {
+                                            el.classList.add('svg-parent-group', 'reveal-right');
+                                        } else if (id === 'bottom-content') {
+                                            el.classList.add('svg-parent-group', 'reveal-up');
+                                        } else {
+                                            el.classList.add('svg-parent-group', 'reveal-up');
+                                        }
+                                        // Ensure child vectors do not have conflicting animations
+                                        el.querySelectorAll('path, rect, circle, polygon, text').forEach(v => {
+                                            v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'reveal-top-left', 'svg-anim-text', 'svg-anim-element');
+                                        });
+                                    });
+                                }
+
+                                const isContactPage = src.includes('contact-page');
+                                if (isContactPage) {
+                                    // Contact page: logo, brands 1..3, main-content, content, brand-name, location, mail, phone-numbers, websites
+                                    const contactAnimSelectors = [
+                                        '#logo',
+                                        '#brand-1',
+                                        '#brand-2',
+                                        '#brand-3',
+                                        '#content',
+                                        '#main-content',
+                                        '#brand-name',
+                                        '#location',
+                                        '#mail',
+                                        '#phone-numbers',
+                                        '[id="www.zillionsangamam.com"]',
+                                        '[id="www.zillionthreads.com"]',
+                                        '[id="www.yarika.in"]',
+                                        '[id="www.mittoys.com"]'
+                                    ];
+                                    contactAnimSelectors.forEach(sel => {
+                                        const el = svgEl.querySelector(sel);
+                                        if (el) {
+                                            el.classList.add('svg-parent-group', 'reveal-up');
+                                            el.querySelectorAll('path, rect, circle, polygon, text').forEach(v => {
+                                                v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'reveal-top-left', 'svg-anim-text', 'svg-anim-element');
+                                            });
+                                        }
+                                    });
+                                }
+
+                                const isHomePage = src.includes('home-page-image');
+                                if (isHomePage) {
+                                    // Check if groups already exist or dynamically create groups from paths
+                                    let homeLogo = svgEl.querySelector('#home-logo') || svgEl.querySelector('#logo');
+                                    let homeBadge = svgEl.querySelector('#home-badge') || svgEl.querySelector('#badge') || svgEl.querySelector('#ribbon');
+                                    let homeContent = svgEl.querySelector('#home-content') || svgEl.querySelector('#content');
+                                    let homeFooter = svgEl.querySelector('#home-footer') || svgEl.querySelector('#footer');
+
+                                    // If new SVG does not have predefined IDs, group elements by logical section:
+                                    if (!homeLogo && !homeBadge && !homeFooter && animatableNodes.length > 0) {
+                                        const logoNodes = [];
+                                        const badgeNodes = [];
+                                        const footerNodes = [];
+
+                                        animatableNodes.forEach((node) => {
+                                            const fill = node.getAttribute('fill') || '';
+                                            const d = node.getAttribute('d') || '';
+
+                                            // Top logo & brand: typically at the top (< 90px in Y coordinate)
+                                            // Lines with fill #215D7F, #BD8B3D, #1B5C7E, #767475 and Y < 100
+                                            if (fill === '#215D7F' || fill === '#BD8B3D' || fill === '#1B5C7E' || fill === '#767475') {
+                                                logoNodes.push(node);
+                                            } else if (fill.includes('paint6') || fill.includes('paint7') || fill.includes('paint8') || fill.includes('paint9') || fill.includes('paint10') || fill.includes('paint11') || fill === '#F2F9FE' || fill === '#DCEDFA' || fill === '#2883A5' || fill === '#267196') {
+                                                // Middle circular emblem / badge / feature graphic
+                                                badgeNodes.push(node);
+                                            } else {
+                                                // Bottom footer, text banners and labels
+                                                footerNodes.push(node);
+                                            }
+                                        });
+
+                                        if (logoNodes.length > 0) {
+                                            homeLogo = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                            homeLogo.setAttribute('id', 'home-logo');
+                                            svgEl.insertBefore(homeLogo, logoNodes[0]);
+                                            logoNodes.forEach(node => homeLogo.appendChild(node));
+                                        }
+
+                                        if (badgeNodes.length > 0) {
+                                            homeBadge = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                            homeBadge.setAttribute('id', 'home-badge');
+                                            svgEl.insertBefore(homeBadge, badgeNodes[0]);
+                                            badgeNodes.forEach(node => homeBadge.appendChild(node));
+                                        }
+
+                                        if (footerNodes.length > 0) {
+                                            homeFooter = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                            homeFooter.setAttribute('id', 'home-footer');
+                                            svgEl.insertBefore(homeFooter, footerNodes[0]);
+                                            footerNodes.forEach(node => homeFooter.appendChild(node));
+                                        }
+                                    }
+
+                                    // Apply animation classes
+                                    if (homeLogo) {
+                                        homeLogo.classList.add('svg-parent-group', 'reveal-up');
+                                    }
+                                    if (homeBadge) {
+                                        homeBadge.classList.add('svg-parent-group', 'anim-popup');
+                                    }
+                                    if (homeContent) {
+                                        homeContent.classList.add('svg-parent-group', 'reveal-up');
+                                    }
+                                    if (homeFooter) {
+                                        homeFooter.classList.add('svg-parent-group', 'reveal-up');
+                                    }
+
+                                    // Strip child vector animation classes so only parents animate smoothly
+                                    [homeLogo, homeBadge, homeContent, homeFooter].forEach(el => {
+                                        if (el) {
+                                            el.querySelectorAll('path, rect, circle, polygon, text').forEach(v => {
+                                                v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'reveal-top-left', 'svg-anim-text', 'svg-anim-element');
+                                            });
+                                        }
+                                    });
+                                }
+
+                                const allNamedElements = (isOpportunitiesPage || isContactPage || isHomePage) ? [] : svgEl.querySelectorAll('[id^="heading-"], [id^="content-"], #heading, #content, [id*="heading"], [id*="content"]');
+
+                                if (allNamedElements && allNamedElements.length > 0) {
+                                    // User has explicitly created #heading-* or #content-* IDs!
+                                    allNamedElements.forEach(el => {
+                                        const id = el.id || '';
+                                        // Heading-2-1..4 and content-2-1..4: reveal right to left (reveal-right)
+                                        // Heading-1..6 and content-1..6: reveal down to up (reveal-up)
+                                        if (id.includes('-2-')) {
+                                            el.classList.add('svg-parent-group', 'reveal-right');
+                                        } else {
+                                            el.classList.add('svg-parent-group', 'reveal-up');
+                                        }
+                                        // Ensure child vectors do not have conflicting animations
+                                        el.querySelectorAll('path, rect, circle, polygon, text').forEach(v => {
+                                            v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                        });
+                                    });
+                                } else if (isProblemsPage) {
+                                    // For problems-page fallback, wrap heading and content into #heading and #content groups
+                                    const headingGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                    headingGroup.setAttribute("id", "heading-1");
+                                    headingGroup.classList.add('svg-parent-group', 'reveal-up');
+
+                                    const contentGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                    contentGroup.setAttribute("id", "content-1");
+                                    contentGroup.classList.add('svg-parent-group', 'reveal-up');
+
+                                    const headingNodes = [];
+                                    const contentNodes = [];
+
+                                    animatableNodes.forEach((node) => {
+                                        let isHeader = false;
+                                        try {
+                                            const d = node.getAttribute('d') || '';
+                                            if (node.getAttribute('fill')?.includes('paint4') || node.getAttribute('fill')?.includes('paint5')) {
+                                                isHeader = true;
+                                            } else if (d.includes('M87 45') || d.includes('M362 45') || d.includes('M102.999 50') || d.includes('M108.116 36') || d.includes('M348 50')) {
+                                                isHeader = true;
+                                            }
+                                        } catch (e) { }
+
+                                        if (isHeader) {
+                                            headingNodes.push(node);
+                                        } else {
+                                            contentNodes.push(node);
+                                        }
+                                    });
+
+                                    if (headingNodes.length > 0) {
+                                        const firstHeader = headingNodes[0];
+                                        svgEl.insertBefore(headingGroup, firstHeader);
+                                        headingNodes.forEach(node => {
+                                            node.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                            headingGroup.appendChild(node);
+                                        });
+
+                                        if (contentNodes.length > 0) {
+                                            const firstContent = contentNodes[0];
+                                            svgEl.insertBefore(contentGroup, firstContent);
+                                            contentNodes.forEach(node => {
+                                                node.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                                contentGroup.appendChild(node);
+                                            });
+                                        }
+                                    } else {
+                                        // Standard grouped chunking
+                                        let groupCount = 0;
+                                        let currentChunk = [];
+                                        const BATCH_SIZE = 16;
+
+                                        function flushChunk() {
+                                            if (currentChunk.length === 0) return;
+                                            groupCount++;
+                                            let animClass = groupCount % 2 === 0 ? 'reveal-right' : 'reveal-up';
+
+                                            if (currentChunk.length === 1 && currentChunk[0].tagName.toLowerCase() === 'g') {
+                                                const gNode = currentChunk[0];
+                                                gNode.classList.add('svg-parent-group', animClass);
+                                                gNode.querySelectorAll('path, rect, circle, polygon').forEach(v => {
+                                                    v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                                });
+                                            } else {
+                                                const parentG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                                parentG.classList.add('svg-parent-group', animClass);
+                                                const firstNode = currentChunk[0];
+                                                svgEl.insertBefore(parentG, firstNode);
+                                                currentChunk.forEach(node => {
+                                                    node.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'svg-anim-text', 'svg-anim-element');
+                                                    parentG.appendChild(node);
+                                                });
+                                            }
+                                            currentChunk = [];
+                                        }
+
+                                        animatableNodes.forEach((node) => {
+                                            const tag = node.tagName.toLowerCase();
+                                            if (tag === 'g') {
+                                                flushChunk();
+                                                currentChunk.push(node);
+                                                flushChunk();
+                                            } else {
+                                                currentChunk.push(node);
+                                                if (currentChunk.length >= BATCH_SIZE) {
+                                                    flushChunk();
+                                                }
+                                            }
+                                        });
+                                        flushChunk();
+                                    }
+                                } else if (!isHomePage) {
+                                    // Step 3: Bundle animatable items into parent groups if they are loose paths,
+                                    // or apply animation class directly to existing parent <g> groups
+                                    let groupCount = 0;
+                                    let currentChunk = [];
+                                    const BATCH_SIZE = 16; // Bundle consecutive text paths (e.g. paragraph or title paths)
+
+                                    function flushChunk() {
+                                        if (currentChunk.length === 0) return;
+
+                                        groupCount++;
+                                        // Determine directional animation for this parent group
+                                        let animClass = 'reveal-left';
+                                        if (groupCount % 3 === 0) {
+                                            animClass = 'anim-popup';
+                                        } else if (groupCount % 2 === 0) {
+                                            animClass = 'reveal-right';
+                                        }
+
+                                        // If it's already a single <g> element with children, animate the group directly
+                                        if (currentChunk.length === 1 && currentChunk[0].tagName.toLowerCase() === 'g') {
+                                            const gNode = currentChunk[0];
+                                            gNode.classList.add('svg-parent-group', animClass);
+                                            // Ensure child vectors do NOT have animation classes
+                                            gNode.querySelectorAll('path, rect, circle, polygon').forEach(v => {
+                                                v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'svg-anim-text', 'svg-anim-element');
+                                            });
+                                        } else {
+                                            // Wrap consecutive vector paths into a newly created parent <g>
+                                            const parentG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                            parentG.classList.add('svg-parent-group', animClass);
+
+                                            const firstNode = currentChunk[0];
+                                            svgEl.insertBefore(parentG, firstNode);
+                                            currentChunk.forEach(node => {
+                                                // Remove any vector-level animation classes
+                                                node.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'svg-anim-text', 'svg-anim-element');
+                                                parentG.appendChild(node);
+                                            });
+                                        }
+                                        currentChunk = [];
+                                    }
+
+                                    animatableNodes.forEach((node) => {
+                                        const tag = node.tagName.toLowerCase();
+                                        if (tag === 'g') {
+                                            // Flush any pending vector batch before this group
+                                            flushChunk();
+                                            currentChunk.push(node);
+                                            flushChunk();
+                                        } else {
+                                            currentChunk.push(node);
+                                            if (currentChunk.length >= BATCH_SIZE) {
+                                                flushChunk();
+                                            }
+                                        }
+                                    });
+                                    flushChunk();
+                                }
+
+                                container.innerHTML = svgEl.outerHTML;
+
+                                // Setup interactive click and touch links for Contact Page (page 6)
+                                if (isContactPage) {
+                                    const bindLink = (selector, actionUrl, isNewTab = true) => {
+                                        const el = container.querySelector(selector);
+                                        if (el) {
+                                            el.classList.add('no-flip-zone', 'interactive-link');
+                                            el.setAttribute('data-action-url', actionUrl);
+                                            el.setAttribute('data-action-newtab', isNewTab ? 'true' : 'false');
+                                            el.style.cursor = 'pointer';
+                                            el.style.pointerEvents = 'auto';
+
+                                            el.querySelectorAll('*').forEach(child => {
+                                                child.classList.add('no-flip-zone');
+                                                child.style.cursor = 'pointer';
+                                                child.style.pointerEvents = 'auto';
+                                            });
+
+                                            const activateLink = (e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                if (isNewTab) {
+                                                    window.open(actionUrl, '_blank', 'noopener,noreferrer');
+                                                } else {
+                                                    window.location.href = actionUrl;
+                                                }
+                                            };
+
+                                            el.addEventListener('click', activateLink);
+                                            el.addEventListener('touchend', activateLink, { passive: false });
+                                        }
+                                    };
+
+                                    // Email links (mailto:)
+                                    bindLink('[id="info@zillionthreads.com"]', 'mailto:info@zillionthreads.com', false);
+                                    bindLink('[id="sales@zillionthreads.com"]', 'mailto:sales@zillionthreads.com', false);
+                                    bindLink('[id="sangamam@zillionthreads.com"]', 'mailto:sangamam@zillionthreads.com', false);
+
+                                    // Individual phone number links (tel:)
+                                    bindLink('[id="9489042220"]', 'tel:9489042220', false);
+                                    bindLink('[id="9489042224"]', 'tel:9489042224', false);
+                                    bindLink('[id="9489042226"]', 'tel:9489042226', false);
+                                    bindLink('[id="9489042227"]', 'tel:9489042227', false);
+                                    bindLink('[id="9489042228"]', 'tel:9489042228', false);
+                                    bindLink('[id="9489042229"]', 'tel:9489042229', false);
+
+                                    // Location link (Google Maps search)
+                                    // Add solid invisible hit area over the entire #location address block so clicking anywhere on the group works
+                                    const locGroup = container.querySelector('#location');
+                                    if (locGroup) {
+                                        const hitRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                                        hitRect.classList.add('interactive-hitbox', 'no-flip-zone');
+                                        hitRect.setAttribute('x', '65');
+                                        hitRect.setAttribute('y', '450');
+                                        hitRect.setAttribute('width', '325');
+                                        hitRect.setAttribute('height', '32');
+                                        hitRect.setAttribute('fill', 'transparent');
+                                        hitRect.setAttribute('pointer-events', 'all');
+                                        hitRect.style.cursor = 'pointer';
+                                        hitRect.style.pointerEvents = 'all';
+                                        locGroup.insertBefore(hitRect, locGroup.firstChild);
+                                    }
+                                    bindLink('#location', 'https://www.google.com/maps/search/?api=1&query=SF+No.+29%2F1B%2C+Onapalayam%2C+Vadavalli+to+Thondamuthur+Road%2C+Coimbatore%2C+Tamil+Nadu+-+641109', true);
+
+                                    // Website links
+                                    bindLink('[id="www.zillionsangamam.com"]', 'https://www.zillionsangamam.com', true);
+                                    bindLink('[id="www.zillionthreads.com"]', 'https://www.zillionthreads.com', true);
+                                    bindLink('[id="www.yarika.in"]', 'https://www.yarika.in', true);
+                                    bindLink('[id="www.mittoys.com"]', 'https://www.mittoys.com', true);
+
+                                    // Brand logos can also link to their websites/collections
+                                    bindLink('#brand-1', 'https://www.yarika.in', true);
+                                    bindLink('#brand-2', 'https://www.mittoys.com', true);
+                                    bindLink('#logo', 'https://www.zillionthreads.com', true);
+                                }
+
+                                // Trigger animation if the page is currently in view
+                                const pageParent = container.closest('.page');
+                                if (pageParent) {
+                                    if (pageParent.classList.contains('page-1') || pageParent.classList.contains('active') || pageParent.classList.contains('animation-on')) {
+                                        pageParent.classList.remove('animation-on');
+                                        requestAnimationFrame(() => {
+                                            pageParent.classList.add('animation-on');
+                                        });
+                                    }
+                                }
+                            }
+                        })
+                        .catch(err => {
+                            console.error("SVG Load Error:", err);
+                        });
+                    loadPromises.push(p);
+                }
+            });
+
+            return Promise.all(loadPromises);
+        }
+
+        // Initial load
+        document.addEventListener("DOMContentLoaded", () => {
+            // Bind click & touch events for Table of Contents navigation images
+            document.querySelectorAll('.toc-image-link').forEach(img => {
+                const handler = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const targetPage = parseInt(img.getAttribute('data-page'));
+                    if (targetPage && window.$ && $('#flipbook').turn) {
+                        setTimeout(() => {
+                            $('#flipbook').turn('page', targetPage);
+                        }, 200);
+                    }
+
+                    // Audio playback mapping for visual TOC page
+                    // const pageAudioMap = {
+                    //     4: "../audios/3D-experience.mp3",
+                    //     5: "../audios/Ward-furniture.mp3",
+                    //     11: "../audios/ICU-critical-care.mp3",
+                    //     13: "../audios/labour-maternity.mp3",
+                    //     15: "../audios/Emergency-patient-transfer.mp3",
+                    //     21: "../audios/Medical-trolleys.mp3",
+                    //     28: "../audios/Examination-consultation.mp3",
+                    //     33: "../audios/Stainless-steel-furniture-ward-accessories.mp3",
+                    //     37: "../audios/General-furniture.mp3",
+                    //     39: "../audios/Accessories.mp3"
+                    // };
+                    if (typeof pageAudioMap !== 'undefined' && pageAudioMap[targetPage]) {
+                        const audioPath = pageAudioMap[targetPage];
+                        const audio = new Audio(audioPath);
+                        audio.play().catch(err => console.log('Audio play failed:', err));
+                    }
+                };
+                img.addEventListener('click', handler);
+                img.addEventListener('touchstart', handler, { passive: false });
+            });
+
+            loadSVGs();
+            setTimeout(() => {
+                const firstPage = $('#flipbook').turn ? $('#flipbook').turn('page') : 1;
+                document.querySelectorAll(`.page-${firstPage}`).forEach(p => p.classList.add('animation-on'));
+            }, 300);
+
+            // Add click event for all website-link.svg images and their anchors
+            document.querySelectorAll('img[src*="website-link.svg"]').forEach(img => {
+                img.style.cursor = 'pointer';
+                img.style.zIndex = '99999';
+                img.style.position = 'absolute';
+                img.style.pointerEvents = 'auto';
+                if (img.parentElement && img.parentElement.tagName === 'A') {
+                    img.parentElement.style.zIndex = '99999';
+                    img.parentElement.style.position = 'absolute';
+                    img.parentElement.style.pointerEvents = 'auto';
+                }
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open('https://www.mathuramsindia.com/', '_blank');
+                });
+            });
+
+            // Sync on initial load
+            if (window.syncProductsCatalog) {
+                console.log("[DynamicCatalog] Calling window.syncProductsCatalog() from DOMContentLoaded");
+                window.syncProductsCatalog();
+            }
+        });
+
+        // Load SVGs and keep products updated when Turn.js creates or turns pages
+        $('#flipbook').on('turned', function (event, page, view) {
+            setTimeout(() => loadSVGs(), 100); // Small delay for DOM to settle
+            console.log(`[DynamicCatalog] Flipbook turned to page: ${page}, view:`, view);
+            if (page === 4 || page === 5 || (Array.isArray(view) && (view.includes(4) || view.includes(5)))) {
+                console.log("[DynamicCatalog] Page 4 or 5 is now in view, triggering window.syncProductsCatalog()");
+                try { if (window.syncProductsCatalog) window.syncProductsCatalog(); } catch (e) {
+                    console.error("[DynamicCatalog] Error calling syncProductsCatalog on turned event:", e);
+                }
+            }
+        });
+
+
+
+
+        // Global capture-phase delegated handler for Page 6 interactive links (websites, phones, emails, location, brands)
+        // This ensures clicks and touches always trigger instantly without being swallowed by Turn.js or SVG child event bubbling.
+        (function setupPage6LinkDelegation() {
+            const handleContactAction = (target) => {
+                if (!target) return false;
+
+                // 1. Check if target or its ancestors have explicit data-action-url
+                const linkWithData = target.closest('[data-action-url]');
+                if (linkWithData) {
+                    const url = linkWithData.getAttribute('data-action-url');
+                    const isNewTab = linkWithData.getAttribute('data-action-newtab') === 'true';
+                    if (url) {
+                        if (isNewTab) {
+                            window.open(url, '_blank', 'noopener,noreferrer');
+                        } else {
+                            window.location.href = url;
+                        }
+                        return true;
+                    }
+                }
+
+                // 2. Websites matching
+                const webEl = target.closest('[id="www.zillionsangamam.com"], [id="www.zillionthreads.com"], [id="www.yarika.in"], [id="www.mittoys.com"], [id*="www."]');
+                if (webEl) {
+                    const id = (webEl.id || '').trim();
+                    let url = '';
+                    if (id.includes('zillionsangamam')) url = 'https://www.zillionsangamam.com';
+                    else if (id.includes('zillionthreads')) url = 'https://www.zillionthreads.com';
+                    else if (id.includes('yarika')) url = 'https://www.yarika.in';
+                    else if (id.includes('mittoys')) url = 'https://www.mittoys.com';
+                    else if (id.startsWith('www.')) url = 'https://' + id;
+
+                    if (url) {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                        return true;
+                    }
+                }
+
+                // 3. Phone numbers matching
+                const phoneEl = target.closest('[id="9489042220"], [id="9489042224"], [id="9489042226"], [id="9489042227"], [id="9489042228"], [id="9489042229"], [id^="94890"]');
+                if (phoneEl) {
+                    const phone = (phoneEl.id || '').trim();
+                    if (phone) {
+                        window.location.href = 'tel:' + phone;
+                        return true;
+                    }
+                }
+
+                // 4. Email matching
+                const mailEl = target.closest('[id="info@zillionthreads.com"], [id="sales@zillionthreads.com"], [id="sangamam@zillionthreads.com"], [id*="@"]');
+                if (mailEl) {
+                    const email = (mailEl.id || '').trim();
+                    if (email && email.includes('@')) {
+                        window.location.href = 'mailto:' + email;
+                        return true;
+                    }
+                }
+
+                // 5. Location matching
+                const locEl = target.closest('#location, [id="location"]');
+                if (locEl) {
+                    const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=SF+No.+29%2F1B%2C+Onapalayam%2C+Vadavalli+to+Thondamuthur+Road%2C+Coimbatore%2C+Tamil+Nadu+-+641109';
+                    window.open(mapsUrl, '_blank', 'noopener,noreferrer');
+                    return true;
+                }
+
+                // 6. Brand logos matching
+                const brandEl = target.closest('#brand-1, #brand-2, #brand-3, #logo');
+                if (brandEl) {
+                    const id = brandEl.id;
+                    if (id === 'brand-1') window.open('https://www.yarika.in', '_blank', 'noopener,noreferrer');
+                    else if (id === 'brand-2') window.open('https://www.mittoys.com', '_blank', 'noopener,noreferrer');
+                    else if (id === 'brand-3' || id === 'logo') window.open('https://www.zillionthreads.com', '_blank', 'noopener,noreferrer');
+                    return true;
+                }
+
+                return false;
+            };
+
+            let touchStartTime = 0;
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            document.addEventListener('touchstart', function (e) {
+                const touch = e.touches[0];
+                touchStartTime = Date.now();
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+            }, { passive: true, capture: true });
+
+            document.addEventListener('touchend', function (e) {
+                const touch = e.changedTouches[0];
+                const deltaX = Math.abs(touch.clientX - touchStartX);
+                const deltaY = Math.abs(touch.clientY - touchStartY);
+                const timeDiff = Date.now() - touchStartTime;
+
+                // Only handle intentional taps (not drags or swipes)
+                if (deltaX < 12 && deltaY < 12 && timeDiff < 500) {
+                    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (handleContactAction(el)) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }
+            }, { passive: false, capture: true });
+
+            document.addEventListener('click', function (e) {
+                if (handleContactAction(e.target)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true); // useCapture: true ensures it executes before Turn.js or other handlers
+        })();
+
+        window.addEventListener('message', function (event) {
+            switch (event.data.action) {
+                case 'flipNext':
+                    $('#flipbook').turn('next');
+                    break;
+                case 'flipPrev':
+                    $('#flipbook').turn('previous');
+                    break;
+                case 'flipFirst':
+                    $('#flipbook').turn('page', 1);
+                    break;
+                case 'flipLast':
+                    const total = $('#flipbook').turn('pages');
+                    $('#flipbook').turn('page', total);
+                    break;
+            }
+        });
+    </script>
+
+    <style>
+        /* Custom scrollbar styling */
+        #scrollContainer::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #scrollContainer::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #scrollContainer::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        #scrollContainer::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+
+
+
+    <script>
+        // Track and report asset loading progress to parent frame so preloader runs until ALL assets are loaded
+        (function () {
+            let assetsLoaded = 0;
+            let totalAssets = 0;
+            let isImagesFinished = false;
+            let isParentNotified = false;
+
+            function reportProgress() {
+                const ratio = totalAssets > 0 ? Math.min(1, Math.max(0, assetsLoaded / totalAssets)) : 0;
+                try {
+                    window.parent.postMessage({
+                        action: 'loadProgress',
+                        loaded: assetsLoaded,
+                        total: totalAssets,
+                        ratio: ratio
+                    }, '*');
+                } catch (e) { }
+            }
+
+            function notifyComplete() {
+                if (isParentNotified) return;
+                isParentNotified = true;
+                isImagesFinished = true;
+
+                // Ensure Page 1 animation triggers cleanly now that it is completely loaded
+                const firstPage = window.$ && $('#flipbook').turn ? $('#flipbook').turn('page') : 1;
+                document.querySelectorAll(`.page-${firstPage}`).forEach(p => {
+                    p.classList.remove('animation-on');
+                    requestAnimationFrame(() => p.classList.add('animation-on'));
+                });
+
+                try {
+                    window.parent.postMessage({ action: 'loadProgress', loaded: totalAssets, total: totalAssets, ratio: 1 }, '*');
+                    window.parent.postMessage({ action: 'assetsLoaded' }, '*');
+                    window.parent.postMessage({ action: 'contentReady' }, '*');
+                } catch (e) { }
+            }
+
+            // Collect all initial promises
+            const tasks = [];
+
+            // 1. Initial SVG loading (home page, problems, opportunities, contact)
+            if (typeof loadSVGs === 'function') {
+                totalAssets += 4; // 4 core page SVGs
+                reportProgress();
+                const svgPromise = loadSVGs()
+                    .then(() => {
+                        assetsLoaded += 4;
+                        reportProgress();
+                    })
+                    .catch(() => {
+                        assetsLoaded += 4;
+                        reportProgress();
+                    });
+                tasks.push(svgPromise);
+            }
+
+            // 2. Initial MySQL product catalog sync
+            if (typeof window.syncProductsCatalog === 'function') {
+                totalAssets += 1;
+                reportProgress();
+                const catalogPromise = window.syncProductsCatalog()
+                    .then(data => {
+                        assetsLoaded += 1;
+                        reportProgress();
+
+                        // Preload all product slot images
+                        if (data) {
+                            const imgUrls = [];
+                            ['page4', 'page5'].forEach(pk => {
+                                if (data[pk] && Array.isArray(data[pk].slots)) {
+                                    data[pk].slots.forEach(s => {
+                                        if (s.image) imgUrls.push(s.image);
+                                    });
+                                }
+                            });
+
+                            if (imgUrls.length > 0) {
+                                totalAssets += imgUrls.length;
+                                reportProgress();
+                                const imgPromises = imgUrls.map(url => new Promise(res => {
+                                    const img = new Image();
+                                    img.onload = () => { assetsLoaded++; reportProgress(); res(); };
+                                    img.onerror = () => { assetsLoaded++; reportProgress(); res(); };
+                                    img.src = url;
+                                }));
+                                return Promise.all(imgPromises);
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        assetsLoaded += 1;
+                        reportProgress();
+                    });
+                tasks.push(catalogPromise);
+            }
+
+            // 3. Regular static images in DOM
+            const domImages = Array.from(document.querySelectorAll('img:not(.calibrate-overlay-img)'));
+            if (domImages.length > 0) {
+                totalAssets += domImages.length;
+                reportProgress();
+                const domImgPromises = domImages.map(img => new Promise(res => {
+                    if (img.complete && img.naturalWidth !== 0) {
+                        assetsLoaded++;
+                        reportProgress();
+                        res();
+                    } else {
+                        img.addEventListener('load', () => { assetsLoaded++; reportProgress(); res(); }, { once: true });
+                        img.addEventListener('error', () => { assetsLoaded++; reportProgress(); res(); }, { once: true });
+                    }
+                }));
+                tasks.push(Promise.all(domImgPromises));
+            }
+
+            // 4. Window load event (stylesheets, fonts, Turn.js setup)
+            const windowLoadPromise = new Promise(res => {
+                if (document.readyState === 'complete') {
+                    res();
+                } else {
+                    window.addEventListener('load', () => res(), { once: true });
+                }
+            });
+            tasks.push(windowLoadPromise);
+
+            // Wait for EVERYTHING to finish before preloader hides
+            Promise.all(tasks).then(() => {
+                // Short RAF tick to allow browser layout & rasterization of Page 1 SVG
+                requestAnimationFrame(() => {
+                    setTimeout(notifyComplete, 120);
+                });
+            });
+
+            // Hard safety fallback (15 seconds max)
+            setTimeout(notifyComplete, 15000);
+        })();
+    </script>
+
+
+    <!-- PRODUCT IMAGE LIGHTBOX POPUP MODAL -->
+    <div id="product-image-modal" class="product-modal-overlay">
+        <!-- <div class="product-modal-container"> -->
+        <button id="product-modal-close" class="product-modal-close" title="Close" aria-label="Close">&times;</button>
+        <img id="product-modal-img" src="" alt="Product Preview" class="product-modal-img" />
+        <!-- </div> -->
+    </div>
+</body>
+
+
+</html>
