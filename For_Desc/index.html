@@ -1965,9 +1965,29 @@
                             class="gutter-shadow  shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[8]" />
                     </div>
                     <!-- *******************************  Page 3 end ***************************** -->
+                    <!-- *******************************  Page 4 Start *************************** -->
+                    <div class="page page-animated page-4">
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/plan-page-1.svg"></div>
+                        <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[8]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow hidden shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[8]" />
+                    </div>
+                    <!-- *******************************  Page 4 end ***************************** -->
+                    <!-- *******************************  Page 5 Start *************************** -->
+                    <div class="page page-animated page-5">
+                        <div class="svg-container w-full h-full"
+                            data-src="../global assets/Images/home-page/plan-page-2.svg"></div>
+                        <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
+                            class="gutter-shadow hidden shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[8]" />
+                        <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
+                            class="gutter-shadow shadow-right absolute h-[100%] top-[0%] left-[-1%] z-[8]" />
+                    </div>
+                    <!-- *******************************  Page 5 end ***************************** -->
 
                     <!-- *******************************  Page 6 Start *************************** -->
-                    <div class="page page-animated page-4 page-6">
+                    <div class="page page-animated page-6">
                         <img src="../global%20assets/Images/commonThings/left-page-shadow.svg" alt="left-page-shadow"
                             class="gutter-shadow shadow-left absolute h-[100%] top-[0%] right-[-1%] z-[4]" />
                         <img src="../global%20assets/Images/commonThings/right-page-shadow.svg" alt="right-page-shadow"
@@ -2377,7 +2397,7 @@
                 autoCenter: true,
                 smartFlip: false,
                 acceleration: false,
-                pages:4,
+                pages:6,
                 when: {
                     turning: function () {
                         document.getElementById("flipaudio")?.play();
@@ -3723,7 +3743,106 @@
                                     });
                                 }
 
-                                const allNamedElements = (isOpportunitiesPage || isContactPage || isHomePage) ? [] : svgEl.querySelectorAll('[id^="heading-"], [id^="content-"], #heading, #content, [id*="heading"], [id*="content"]');
+                                const isPlanPage1 = src.includes('plan-page-1');
+                                const isPlanPage2 = src.includes('plan-page-2');
+
+                                if (isPlanPage1 || isPlanPage2) {
+                                    const clipGroup = svgEl.querySelector('g[clip-path]') || svgEl;
+                                    const children = Array.from(clipGroup.children);
+
+                                    const wrapPlanGroup = (elems, id, animClass) => {
+                                        if (!elems || elems.length === 0) return null;
+                                        const valid = elems.filter(Boolean);
+                                        if (valid.length === 0) return null;
+                                        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                        if (id) g.setAttribute('id', id);
+                                        g.classList.add('svg-parent-group', animClass);
+                                        valid.forEach(el => {
+                                            if (el && el.parentNode) {
+                                                el.querySelectorAll('path, rect, circle, polygon, text').forEach(v => {
+                                                    v.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'reveal-top-left', 'svg-anim-text', 'svg-anim-element');
+                                                });
+                                                el.classList.remove('reveal-left', 'reveal-right', 'anim-popup', 'reveal-up', 'reveal-top-left', 'svg-anim-text', 'svg-anim-element');
+                                                g.appendChild(el);
+                                            }
+                                        });
+                                        clipGroup.appendChild(g);
+                                        return g;
+                                    };
+
+                                    const getIndices = (start, end) => Array.from({length: end - start + 1}, (_, i) => children[start + i]);
+
+                                    if (isPlanPage1 && children.length === 157) {
+                                        [children[0], children[1], children[9], children[10], children[11]].forEach(el => el && el.classList.add('svg-static-bg'));
+                                        wrapPlanGroup([children[3], children[4], children[5], children[6], children[7], children[8], children[17], children[18]], 'plan1-header', 'reveal-top-left');
+                                        wrapPlanGroup([children[12], ...getIndices(19, 39)], 'plan1-card-1', 'reveal-left');
+                                        wrapPlanGroup([children[13], ...getIndices(40, 57)], 'plan1-card-2', 'reveal-left');
+                                        wrapPlanGroup([children[14], ...getIndices(58, 82)], 'plan1-card-3', 'reveal-left');
+                                        wrapPlanGroup([children[16], ...getIndices(83, 103)], 'plan1-card-4', 'reveal-right');
+                                        wrapPlanGroup([children[15], ...getIndices(104, 135)], 'plan1-card-5', 'reveal-right');
+                                        wrapPlanGroup(getIndices(136, 156), 'plan1-card-6', 'reveal-up');
+                                        wrapPlanGroup([children[2]], 'plan1-footer', 'reveal-up');
+                                    } else if (isPlanPage2 && children.length === 242) {
+                                        [children[0], children[1], children[5], children[6], children[153]].forEach(el => el && el.classList.add('svg-static-bg'));
+                                        wrapPlanGroup([children[3], children[4], children[147], children[148], children[149], children[150], children[151], children[152]], 'plan2-header', 'reveal-top-left');
+                                        wrapPlanGroup(getIndices(154, 181), 'plan2-card-1', 'reveal-left');
+                                        wrapPlanGroup(getIndices(86, 110), 'plan2-card-2', 'reveal-left');
+                                        wrapPlanGroup(getIndices(217, 241), 'plan2-card-3', 'reveal-left');
+                                        wrapPlanGroup(getIndices(64, 85), 'plan2-card-4', 'reveal-left');
+                                        wrapPlanGroup(getIndices(7, 34), 'plan2-card-5', 'reveal-right');
+                                        wrapPlanGroup(getIndices(111, 146), 'plan2-card-6', 'reveal-right');
+                                        wrapPlanGroup(getIndices(35, 63), 'plan2-card-7', 'reveal-right');
+                                        wrapPlanGroup([children[2], ...getIndices(182, 216)], 'plan2-card-8', 'reveal-up');
+                                    } else {
+                                        const staticElems = [];
+                                        const headerElems = [];
+                                        const footerElems = [];
+                                        const cardBuckets = {};
+
+                                        children.forEach((child, idx) => {
+                                            const tag = child.tagName.toLowerCase();
+                                            const fill = child.getAttribute('fill') || '';
+                                            const stroke = child.getAttribute('stroke') || '';
+                                            const d = child.getAttribute('d') || '';
+                                            let x = parseFloat(child.getAttribute('x') || 0);
+                                            let y = parseFloat(child.getAttribute('y') || 0);
+                                            if (!x && !y && d) {
+                                                const mMatch = d.match(/M\s*([-+]?\d*\.?\d+)\s+([-+]?\d*\.?\d+)/i);
+                                                if (mMatch) {
+                                                    x = parseFloat(mMatch[1]);
+                                                    y = parseFloat(mMatch[2]);
+                                                }
+                                            }
+
+                                            if ((idx === 0 && tag === 'rect') || fill.includes('pattern0') || fill === '#1A7292' || d.startsWith('M449 5')) {
+                                                staticElems.push(child);
+                                            } else if (y < 85 && (fill.includes('paint1') || fill.includes('paint2') || fill.includes('paint3') || fill.includes('paint4') || stroke === '#72787D' || fill === 'white' || fill === 'black')) {
+                                                headerElems.push(child);
+                                            } else if (y > 480 && fill.includes('paint0')) {
+                                                footerElems.push(child);
+                                            } else if (x < 220) {
+                                                const cId = y < 170 ? 'card-1' : (y < 280 ? 'card-2' : (y < 390 ? 'card-3' : 'card-4'));
+                                                cardBuckets[cId] = cardBuckets[cId] || [];
+                                                cardBuckets[cId].push(child);
+                                            } else {
+                                                const cId = y < 170 ? 'card-5' : (y < 280 ? 'card-6' : (y < 390 ? 'card-7' : 'card-8'));
+                                                cardBuckets[cId] = cardBuckets[cId] || [];
+                                                cardBuckets[cId].push(child);
+                                            }
+                                        });
+
+                                        staticElems.forEach(el => el.classList.add('svg-static-bg'));
+                                        const prefix = isPlanPage1 ? 'plan1' : 'plan2';
+                                        wrapPlanGroup(headerElems, `${prefix}-header`, 'reveal-top-left');
+                                        Object.keys(cardBuckets).forEach(k => {
+                                            const anim = k.startsWith('card-1') || k.startsWith('card-2') || k.startsWith('card-3') || k.startsWith('card-4') ? 'reveal-left' : 'reveal-right';
+                                            wrapPlanGroup(cardBuckets[k], `${prefix}-${k}`, anim);
+                                        });
+                                        wrapPlanGroup(footerElems, `${prefix}-footer`, 'reveal-up');
+                                    }
+                                }
+
+                                const allNamedElements = (isOpportunitiesPage || isContactPage || isHomePage || isPlanPage1 || isPlanPage2) ? [] : svgEl.querySelectorAll('[id^="heading-"], [id^="content-"], #heading, #content, [id*="heading"], [id*="content"]');
 
                                 if (allNamedElements && allNamedElements.length > 0) {
                                     // User has explicitly created #heading-* or #content-* IDs!
@@ -3833,7 +3952,7 @@
                                         });
                                         flushChunk();
                                     }
-                                } else if (!isHomePage) {
+                                } else if (!isHomePage && !isPlanPage1 && !isPlanPage2) {
                                     // Step 3: Bundle animatable items into parent groups if they are loose paths,
                                     // or apply animation class directly to existing parent <g> groups
                                     let groupCount = 0;
@@ -3973,7 +4092,19 @@
                                 // Trigger animation if the page is currently in view
                                 const pageParent = container.closest('.page');
                                 if (pageParent) {
-                                    if (pageParent.classList.contains('page-1') || pageParent.classList.contains('active') || pageParent.classList.contains('animation-on')) {
+                                    let isInView = pageParent.classList.contains('page-1') || pageParent.classList.contains('active') || pageParent.classList.contains('animation-on');
+                                    try {
+                                        if (window.$ && $('#flipbook').length && typeof $('#flipbook').turn === 'function') {
+                                            const v = $('#flipbook').turn('view') || [];
+                                            v.forEach(p => {
+                                                if (p > 0 && (pageParent.classList.contains(`page-${p}`) || pageParent.classList.contains(`p${p}`))) {
+                                                    isInView = true;
+                                                }
+                                            });
+                                        }
+                                    } catch (e) {}
+
+                                    if (isInView) {
                                         pageParent.classList.remove('animation-on');
                                         requestAnimationFrame(() => {
                                             pageParent.classList.add('animation-on');

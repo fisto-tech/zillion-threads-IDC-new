@@ -5366,3 +5366,189 @@ a img,
 .page-6 #brand-3:hover {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
+
+/* -------------------------------------------------------------
+   PAGE 4 & PAGE 5 (BUSINESS PLAN PAGES): ONE-BY-ONE SEQUENTIAL REVEAL ANIMATIONS
+   ------------------------------------------------------------- */
+
+/* Static background elements: stay steady and visible */
+.page-4 .svg-static-bg,
+.page-5 .svg-static-bg {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: none;
+}
+
+/* Initial States - Hidden and shifted before page turn */
+.page-4 #plan1-header,
+.page-5 #plan2-header {
+  transform-box: fill-box;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translate(35px, -35px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.page-4 #plan1-card-1,
+.page-4 #plan1-card-2,
+.page-4 #plan1-card-3,
+.page-5 #plan2-card-1,
+.page-5 #plan2-card-2,
+.page-5 #plan2-card-3,
+.page-5 #plan2-card-4 {
+  transform-box: fill-box;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translateX(-45px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.page-4 #plan1-card-4,
+.page-4 #plan1-card-5,
+.page-5 #plan2-card-5,
+.page-5 #plan2-card-6,
+.page-5 #plan2-card-7 {
+  transform-box: fill-box;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translateX(45px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.page-4 #plan1-card-6,
+.page-4 #plan1-footer,
+.page-5 #plan2-card-8 {
+  transform-box: fill-box;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Active Animated States - One by One Reveal when turned */
+
+/* Header */
+.page-4.animation-on #plan1-header {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+  transition-delay: 0.10s;
+}
+
+.page-5.animation-on #plan2-header {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+  transition-delay: 0.10s;
+}
+
+/* Page 4: Cascading one-by-one reveals */
+.page-4.animation-on #plan1-card-1 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.20s;
+}
+
+.page-4.animation-on #plan1-card-4 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.28s;
+}
+
+.page-4.animation-on #plan1-card-2 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.38s;
+}
+
+.page-4.animation-on #plan1-card-5 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.46s;
+}
+
+.page-4.animation-on #plan1-card-3 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.54s;
+}
+
+.page-4.animation-on #plan1-card-6 {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 0.62s;
+}
+
+.page-4.animation-on #plan1-footer {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 0.70s;
+}
+
+/* Page 5: Cascading one-by-one reveals */
+.page-5.animation-on #plan2-card-1 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.20s;
+}
+
+.page-5.animation-on #plan2-card-5 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.28s;
+}
+
+.page-5.animation-on #plan2-card-2 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.36s;
+}
+
+.page-5.animation-on #plan2-card-6 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.44s;
+}
+
+.page-5.animation-on #plan2-card-3 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.52s;
+}
+
+.page-5.animation-on #plan2-card-7 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.60s;
+}
+
+.page-5.animation-on #plan2-card-4 {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition-delay: 0.68s;
+}
+
+.page-5.animation-on #plan2-card-8 {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 0.76s;
+}
+
+/* Fallback general active states for plan reveal elements */
+.page-4.animation-on .reveal-left,
+.page-5.animation-on .reveal-left,
+.page-4.animation-on .reveal-right,
+.page-5.animation-on .reveal-right,
+.page-4.animation-on .reveal-up,
+.page-5.animation-on .reveal-up,
+.page-4.animation-on .reveal-top-left,
+.page-5.animation-on .reveal-top-left {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
