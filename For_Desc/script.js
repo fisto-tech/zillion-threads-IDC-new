@@ -1798,14 +1798,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Pages 2-3 (Double page spread)
     createThumbItem(2, 'page 2-3', '../global%20assets/Images/Thumbnail-Images/page-2-3.webp');
 
+    // Pages 4-5 (Double page spread)
+    createThumbItem(4, 'page 4-5', '../global%20assets/Images/Thumbnail-Images/page-4-5.webp');
+
 
     // Page 6 (Single contact/back page)
-    createThumbItem(4, 'page 4', '../global%20assets/Images/Thumbnail-Images/page-6.webp');
+    createThumbItem(6, 'page 6', '../global%20assets/Images/Thumbnail-Images/page-6.webp');
 
     function createThumbItem(pageNumber, label, imageSrc) {
         const item = document.createElement('div');
         item.className = 'thumb-grid-item';
-        if (pageNumber === 1 || pageNumber === 4 || pageNumber === 40) {
+        if (pageNumber === 1 || pageNumber === 6 || pageNumber === 40) {
             item.classList.add('portrait-card');
         }
         item.setAttribute('data-page', pageNumber);
