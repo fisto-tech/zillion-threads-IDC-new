@@ -192,6 +192,7 @@ function closeMenu1() {
     navOverlay1.classList.remove('show');
     navToggle1.setAttribute('aria-expanded', 'false');
 }
+window.closeMenu1 = closeMenu1;
 navToggle1.addEventListener('click', function () {
     if (tocNav1.classList.contains('show')) closeMenu1();
     else openMenu1();
@@ -1319,8 +1320,20 @@ document.addEventListener("click", (e) => {
 
     // ðŸ”’ AUTOPLAY - NEW!
     function blockAutoplay(e) {
-        if (blockIfZoomed(e, 'â–¶ï¸ Autoplay Blocked', 'Zoom out to use autoplay feature')) {
+        if (blockIfZoomed(e, '▶️ Autoplay Blocked', 'Zoom out to use autoplay feature')) {
             return false;
+        }
+        if (typeof window.closeThumbDrawer === 'function') {
+            window.closeThumbDrawer();
+        } else {
+            const thumbDrawer = document.getElementById('thumbnailDrawer');
+            if (thumbDrawer) thumbDrawer.classList.remove('show');
+            const overlay = document.getElementById('navOverlay');
+            const tocNav = document.getElementById('tocNav');
+            if (!tocNav || !tocNav.classList.contains('show')) {
+                document.body.classList.remove('toc-active');
+                if (overlay) overlay.classList.remove('show');
+            }
         }
     }
 

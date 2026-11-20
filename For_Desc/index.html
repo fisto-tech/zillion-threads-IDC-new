@@ -1493,7 +1493,7 @@
             <!-- Thumbnail Drawer Panel (Desktop Only) -->
             <div id="thumbnailDrawer" class="thumbnail-drawer" aria-label="Page Thumbnails">
                 <div class="toc-header-container flex justify-between items-center">
-                    <div class="toc-title">Page Thumbnails</div>
+                    <div class="toc-title">Page Overview</div>
                     <button id="closeThumbBtn"
                         class="w-[1.5vw] h-[1.5vw] flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer">
                         <svg class="w-[1.2vw] h-[1.2vw]" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -3157,8 +3157,44 @@
                 currentProgress = 0;
             }
 
+            function closeOpenThumbnails() {
+                if (typeof window.closeThumbDrawer === 'function') {
+                    window.closeThumbDrawer();
+                } else {
+                    const thumbDrawer = document.getElementById('thumbnailDrawer');
+                    if (thumbDrawer) thumbDrawer.classList.remove('show');
+                    const overlay = document.getElementById('navOverlay');
+                    const tocNav = document.getElementById('tocNav');
+                    if (!tocNav || !tocNav.classList.contains('show')) {
+                        document.body.classList.remove('toc-active');
+                        if (overlay) overlay.classList.remove('show');
+                    }
+                }
+                if (typeof window.closeMenu1 === 'function') {
+                    window.closeMenu1();
+                } else if (typeof closeMenu1 === 'function') {
+                    closeMenu1();
+                } else {
+                    const navToggle1 = document.getElementById('navToggle1');
+                    if (navToggle1) navToggle1.classList.remove('open');
+                    const tocNav1 = document.getElementById('tocNav1');
+                    if (tocNav1) tocNav1.classList.remove('show');
+                    const navOverlay1 = document.getElementById('navOverlay1');
+                    if (navOverlay1) navOverlay1.classList.remove('show');
+                }
+                const mobileTocPanel = document.getElementById('mobileTocPanel');
+                if (mobileTocPanel && mobileTocPanel.classList.contains('active')) {
+                    mobileTocPanel.classList.remove('active');
+                    const mobileTocOverlay = document.getElementById('mobileTocOverlay');
+                    if (mobileTocOverlay) mobileTocOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
             function startAutoplay() {
                 if (isAutoPlaying) return;
+
+                closeOpenThumbnails();
 
                 isAutoPlaying = true;
                 window.isAutoPlaying = true;
@@ -3211,6 +3247,7 @@
             if (autoplayBtn) {
                 autoplayBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
+                    closeOpenThumbnails();
                     if (isAutoPlaying) {
                         stopAutoplay();
                     } else {
@@ -3230,7 +3267,7 @@
             document.addEventListener('keydown', function (e) {
                 if (e.code === 'Space' && !e.target.matches('input, textarea')) {
                     e.preventDefault();
-                    if (isAutoPlaying) { stopAutoplay(); } else { startAutoplay(); }
+                    if (isAutoPlaying) { stopAutoplay(); } else { closeOpenThumbnails(); startAutoplay(); }
                 }
             });
 
